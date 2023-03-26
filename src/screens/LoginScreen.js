@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
   StyleSheet,
@@ -10,18 +10,63 @@ import {
 } from "react-native";
 import { Divider } from "@rneui/themed";
 
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+
+import { authentication } from "../../firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const LoginScreen = ({ navigation }) => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(authentication, email, password)
+      .then((re) => {
+        console.log(re);
+      })
+      .catch((re) => {
+        console.log(re);
+      });
+  };
+
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(authentication, email, password)
+      .then((re) => {
+        console.log("successful");
+        setIsSignedIn(true);
+      })
+      .catch((re) => {
+        console.log(re);
+      });
+  };
+
+  const SignOutUser = () => {
+    signOut(authentication)
+      .then((re) => {
+        setIsSignedIn(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <View>
       <View style={styles.header}>
         <Text style={styles.headertext1}>Nepal Can Code</Text>
-        <Text style={styles.headertext2}>Login</Text>
+        <FontAwesome.Button
+          name="bars"
+          backgroundColor="transparent"
+          style={styles.headertext2}
+        ></FontAwesome.Button>
       </View>
       <View style={styles.logincontainer}>
         <Text style={styles.textcontainerlogin}>Log in</Text>
@@ -39,15 +84,20 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
-            placeholder="Enter your password."
+            placeholder="Enter your password"
             placeholderTextColor="#003f5c"
             secureTextEntry={true}
             onChangeText={(password) => setPassword(password)}
           />
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Log in</Text>
-        </TouchableOpacity>
+        <View flexDirection="row">
+          <TouchableOpacity onPress={handleSignIn} style={styles.button}>
+            <Text style={styles.buttonText}>Log in</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleSignUp} style={styles.button}>
+            <Text style={styles.buttonText}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
