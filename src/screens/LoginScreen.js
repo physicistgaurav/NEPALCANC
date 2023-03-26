@@ -41,20 +41,11 @@ const LoginScreen = ({ navigation }) => {
     signInWithEmailAndPassword(authentication, email, password)
       .then((re) => {
         console.log("successful");
+        navigation.navigate("Home");
         setIsSignedIn(true);
       })
       .catch((re) => {
-        console.log(re);
-      });
-  };
-
-  const SignOutUser = () => {
-    signOut(authentication)
-      .then((re) => {
-        setIsSignedIn(false);
-      })
-      .catch((err) => {
-        console.log(err);
+        error = console.log(re);
       });
   };
 
