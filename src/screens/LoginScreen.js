@@ -78,9 +78,11 @@ const styles = StyleSheet.create({
   logincontainer: {
     backgroundColor: "#e9ecef",
     margin: 50,
-    width: 300,
+    width: 320,
     height: 320,
     borderRadius: 4,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   textcontainerlogin: {
     color: "red",
