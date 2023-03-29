@@ -78,6 +78,13 @@ const HomeScreen = ({ navigation }) => {
     },
   ];
 
+  function extractUsername(email) {
+    var parts = email.split("@");
+    var username = parts[0];
+    username = username.charAt(0).toUpperCase() + username.slice(1);
+    return username;
+  }
+
   return (
     <ScrollView>
       <View style={styles.main}>
@@ -101,7 +108,10 @@ const HomeScreen = ({ navigation }) => {
             onPress: signOutUser,
           }}
         />
-        <Text style={styles.headtext}> Welcome, {loggedInUser?.email}</Text>
+        <Text style={styles.headtext}>
+          {" "}
+          Welcome, {extractUsername(loggedInUser?.email)}
+        </Text>
 
         <View style={styles.cardContainer}>
           {homeData.map((homeData, index) => (
