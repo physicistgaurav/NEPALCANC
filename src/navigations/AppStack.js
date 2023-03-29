@@ -31,7 +31,11 @@ const AppStack = () => {
         component={RegionScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Profile" component={ProfileScreen} />
 
       <Stack.Screen name="EmployeeDetail" component={EmployeeDetailScreen} />

@@ -18,11 +18,7 @@ import { useAuth } from "../contexts/AuthContext";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const HomeScreen = ({ navigation }) => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
   const { loggedInUser, setLoggedInUser } = useAuth();
-
-  console.log(loggedInUser);
 
   const signOutUser = () => {
     signOut(authentication)
@@ -79,9 +75,12 @@ const HomeScreen = ({ navigation }) => {
   ];
 
   function extractUsername(email) {
+    if (!loggedInUser) return "";
+
     var parts = email.split("@");
     var username = parts[0];
     username = username.charAt(0).toUpperCase() + username.slice(1);
+
     return username;
   }
 

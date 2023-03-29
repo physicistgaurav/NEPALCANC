@@ -35,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
     createUserWithEmailAndPassword(authentication, email, password)
       .then((res) => {
         console.log(res.user);
-        setLoggedInUser(res);
+        setLoggedInUser(res.user);
       })
       .catch((re) => {
         console.log(re);
