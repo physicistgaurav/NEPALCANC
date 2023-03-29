@@ -73,7 +73,7 @@ const ProfileScreen = ({ navigation }) => {
         <Avatar
           style={styles.avatar}
           rounded
-          source={require("/home/nirajan/NepalCanCode/NEPALCANC/assets/defaultUser.png")}
+          source={require("../../../assets/adaptive-icon.png")}
         />
         <View style={{ height: 25 }} />
 
