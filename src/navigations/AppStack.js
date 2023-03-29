@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DocumentScreen from "../screens/DocumentScreen";
 
 import HomeScreen from "../screens/HomeScreen";
 import RegionScreen from "../screens/RegionScreen";
@@ -16,6 +17,11 @@ const AppStack = () => {
       <Stack.Screen
         name="Regions"
         component={RegionScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Documents"
+        component={DocumentScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

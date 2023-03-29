@@ -5,6 +5,7 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -38,39 +39,42 @@ const HomeScreen = ({ navigation }) => {
     {
       name: "My Profile",
       myIcon: "person",
+      screen: "Profile",
     },
     {
       name: "Employee \nDirectory",
       myIcon: "home",
+      screen: "Employee",
     },
     {
       name: "Document \nCenter",
       myIcon: "book",
+      screen: "Documents",
     },
     {
       name: "Regions",
-
       myIcon: "location",
+      screen: "Regions",
     },
     {
       name: "Branches",
-
       myIcon: "keypad-outline",
+      screen: "Branches",
     },
     {
       name: "Feedback",
-
       myIcon: "star",
+      screen: "Feedback",
     },
     {
       name: "Help Desk",
-
       myIcon: "umbrella-outline",
+      screen: "Help",
     },
     {
       name: "Birthday \nNotification",
-
       myIcon: "heart-half-outline",
+      screen: "Birthday",
     },
   ];
 
@@ -102,27 +106,31 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.cardContainer}>
           {homeData.map((homeData, index) => (
             <Card key={index} containerStyle={styles.card}>
-              <View style={styles.cardContent}>
-                <Ionicons
-                  name={homeData.myIcon}
-                  onPress={() => navigation.navigate("Regions")}
-                  size={75}
-                  color="red"
-                  style={{
-                    width: SCREEN_WIDTH * 0.3,
-                    height: SCREEN_WIDTH * 0.3,
-                    borderRadius: 10,
-                    marginRight: 10,
-                    paddingHorizontal: 30,
-                    paddingVertical: 30,
-                  }}
-                />
-                <View style={styles.cardInfoContainer}>
-                  <View style={styles.cardInfo}>
-                    <Text style={styles.cardTitle}>{homeData.name}</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(homeData.screen)}
+              >
+                <View style={styles.cardContent}>
+                  <Ionicons
+                    name={homeData.myIcon}
+                    // onPress={() => navigation.navigate({'homeData.screen'})}
+                    size={75}
+                    color="red"
+                    style={{
+                      width: SCREEN_WIDTH * 0.3,
+                      height: SCREEN_WIDTH * 0.3,
+                      borderRadius: 10,
+                      marginRight: 10,
+                      paddingHorizontal: 30,
+                      paddingVertical: 30,
+                    }}
+                  />
+                  <View style={styles.cardInfoContainer}>
+                    <View style={styles.cardInfo}>
+                      <Text style={styles.cardTitle}>{homeData.name}</Text>
+                    </View>
                   </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             </Card>
           ))}
         </View>
@@ -252,5 +260,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#432316",
     padding: 2,
+    lineHeight: 25,
   },
 });
