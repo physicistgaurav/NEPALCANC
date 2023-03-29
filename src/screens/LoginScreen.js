@@ -28,6 +28,8 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = React.useState("");
 
   const { setLoggedInUser } = useAuth();
+  const inputRef = React.useRef();
+  const passwordRef = React.useRef();
 
   const handleSignUp = () => {
     createUserWithEmailAndPassword(authentication, email, password)
@@ -66,16 +68,35 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.textcontainerlogin}>Log in</Text>
         <Divider style={styles.divider}></Divider>
         <Text style={styles.loginlabel}>Email</Text>
-        <View style={styles.inputView}>
+        <TouchableOpacity
+          onPress={() => inputRef.current.focus()}
+          style={styles.inputView}
+        >
           <TextInput
+            ref={inputRef}
             style={styles.TextInput}
             placeholder="Enter your email"
             placeholderTextColor="#003f5c"
             onChangeText={(email) => setEmail(email)}
           />
-        </View>
+        </TouchableOpacity>
+
         <Text style={styles.loginlabel}>Password</Text>
-        <View style={styles.inputView}>
+        <TouchableOpacity
+          onPress={() => passwordRef.current.focus()}
+          style={styles.inputView}
+        >
+          <TextInput
+            ref={passwordRef}
+            style={styles.TextInput}
+            placeholder="Enter your password"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={true}
+            onChangeText={(password) => setPassword(password)}
+          />
+        </TouchableOpacity>
+
+        {/* <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
             placeholder="Enter your password"
@@ -83,7 +104,7 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry={true}
             onChangeText={(password) => setPassword(password)}
           />
-        </View>
+        </View> */}
         <View flexDirection="row">
           <TouchableOpacity onPress={handleSignIn} style={styles.button}>
             <Text style={styles.buttonText}>Log in</Text>
