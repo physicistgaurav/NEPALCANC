@@ -18,19 +18,22 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { useAuth } from "../contexts/AuthContext";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const LoginScreen = ({ navigation }) => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const { setLoggedInUser } = useAuth();
+
   const handleSignUp = () => {
     createUserWithEmailAndPassword(authentication, email, password)
-      .then((re) => {
-        console.log(re);
+      .then((res) => {
+        console.log(res.user);
+        setLoggedInUser(res);
       })
       .catch((re) => {
         console.log(re);
@@ -39,13 +42,13 @@ const LoginScreen = ({ navigation }) => {
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(authentication, email, password)
-      .then((re) => {
+      .then((res) => {
         console.log("successful");
         navigation.navigate("Home");
-        setIsSignedIn(true);
+        setLoggedInUser(res.user);
       })
-      .catch((re) => {
-        error = console.log(re);
+      .catch((err) => {
+        console.log(err);
       });
   };
 
