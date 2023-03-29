@@ -9,10 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Header, Icon, Card, Divider } from "react-native-elements";
-import { MaterialIcons } from "@expo/vector-icons";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const regionsData = [
   {
