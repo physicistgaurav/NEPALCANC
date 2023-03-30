@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
   View,
 } from "react-native";
 import { Divider } from "@rneui/themed";
@@ -26,6 +27,8 @@ const SCREEN_HEIGHT = Dimensions.get("window").height;
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { setLoggedInUser } = useAuth();
   const inputRef = React.useRef();
@@ -42,15 +45,19 @@ const LoginScreen = ({ navigation }) => {
       });
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
+    setIsLoading(true);
+
     signInWithEmailAndPassword(authentication, email, password)
       .then((res) => {
         console.log("successful");
         navigation.navigate("Home");
         setLoggedInUser(res.user);
       })
+
       .catch((err) => {
         console.log(err);
+        setError("Incorrect Email/Password");
       });
   };
 
@@ -96,23 +103,20 @@ const LoginScreen = ({ navigation }) => {
           />
         </TouchableOpacity>
 
-        {/* <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Enter your password"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-            onChangeText={(password) => setPassword(password)}
-          />
-        </View> */}
-        <View flexDirection="row">
-          <TouchableOpacity onPress={handleSignIn} style={styles.button}>
-            <Text style={styles.buttonText}>Log in</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleSignUp} style={styles.button}>
-            <Text style={styles.buttonText}>Sign up</Text>
-          </TouchableOpacity>
-        </View>
+        {error && <Text style={styles.errorText}>{error}</Text>}
+
+        {isLoading ? (
+          <ActivityIndicator size="large" color="black" />
+        ) : (
+          <View flexDirection="row">
+            <TouchableOpacity onPress={handleSignIn} style={styles.button}>
+              <Text style={styles.buttonText}>Log in</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleSignUp} style={styles.button}>
+              <Text style={styles.buttonText}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -144,7 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e9ecef",
     margin: 50,
     width: 320,
-    height: 320,
+    height: 340,
     borderRadius: 4,
     paddingLeft: 10,
     paddingRight: 10,
@@ -189,5 +193,11 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 18,
+  },
+  errorText: {
+    fontSize: 14,
+    color: "red",
+    marginTop: 10,
+    paddingLeft: 15,
   },
 });
