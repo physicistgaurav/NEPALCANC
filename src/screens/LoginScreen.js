@@ -28,6 +28,7 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const { setLoggedInUser } = useAuth();
@@ -58,7 +59,8 @@ const LoginScreen = ({ navigation }) => {
       .catch((err) => {
         console.log(err);
         setError("Incorrect Email/Password");
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -105,7 +107,7 @@ const LoginScreen = ({ navigation }) => {
 
         {error && <Text style={styles.errorText}>{error}</Text>}
 
-        {isLoading ? (
+        {/* {isLoading ? (
           <ActivityIndicator size="large" color="black" />
         ) : (
           <View flexDirection="row">
@@ -116,7 +118,20 @@ const LoginScreen = ({ navigation }) => {
               <Text style={styles.buttonText}>Sign up</Text>
             </TouchableOpacity>
           </View>
-        )}
+        )} */}
+
+        <View flexDirection="row">
+          <TouchableOpacity onPress={handleSignIn} style={styles.button}>
+            {isLoading ? (
+              <ActivityIndicator size="small" color="black" />
+            ) : (
+              <Text style={styles.buttonText}>Log in</Text>
+            )}
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleSignUp} style={styles.button}>
+            <Text style={styles.buttonText}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
