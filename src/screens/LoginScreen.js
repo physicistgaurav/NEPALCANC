@@ -12,6 +12,7 @@ import {
 import { Divider } from "@rneui/themed";
 
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import { authentication } from "../../firebase";
 import {
@@ -27,6 +28,7 @@ const SCREEN_HEIGHT = Dimensions.get("window").height;
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = React.useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -100,9 +102,19 @@ const LoginScreen = ({ navigation }) => {
             style={styles.TextInput}
             placeholder="Enter your password"
             placeholderTextColor="#003f5c"
-            secureTextEntry={true}
+            secureTextEntry={!showPassword}
             onChangeText={(password) => setPassword(password)}
           />
+          <TouchableOpacity
+            style={{ position: "absolute", right: 15, top: 10 }}
+            onPress={() => setShowPassword(!showPassword)}
+          >
+            <Icon
+              name={showPassword ? "eye-slash" : "eye"}
+              size={20}
+              color="#777"
+            />
+          </TouchableOpacity>
         </TouchableOpacity>
 
         {error && <Text style={styles.errorText}>{error}</Text>}

@@ -22,6 +22,11 @@ const AppStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="Home"
         component={HomeScreen}
         options={{ headerShown: false }}
@@ -31,11 +36,7 @@ const AppStack = () => {
         component={RegionScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen name="Profile" component={ProfileScreen} />
 
       <Stack.Screen name="EmployeeDetail" component={EmployeeDetailScreen} />
