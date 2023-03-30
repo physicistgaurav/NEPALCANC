@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Header, Divider, Card } from "react-native-elements";
 
-import { Table, Row, Rows } from "react-native-table-component";
+import { Table, Row, Rows, Col } from "react-native-table-component";
 
 import { Dropdown } from "react-native-element-dropdown";
 
@@ -40,6 +40,9 @@ const MyHeader = () => {
 };
 
 const BranchScreen = ({ navigation }) => {
+  const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
+  const [search, setSearch] = React.useState("");
   //TABLE
   const [tableHead, setTableHead] = useState([
     "ID",
@@ -49,7 +52,7 @@ const BranchScreen = ({ navigation }) => {
     "Region",
   ]);
 
-  const [tableData, setTableData] = useState([
+  const initialTableData = [
     ["BANS", "Bangadhi", "9801984435", "Bangadhi mun.", "Bheri"],
     ["CTRA", "Chatara", "9801984366", "DHARAN", "Koshi"],
     ["KALA", "Kalabanjar", "9801984116", "Kalabnjar", "Koshi"],
@@ -60,9 +63,82 @@ const BranchScreen = ({ navigation }) => {
     ["JOMS", "Jomsom", "9846347798", "Jomsom", "Gandaki"],
     ["RUKU", "Rukumkot", "9843459842", "Rukumkot", "Rapti"],
     ["TBAS", "Tehrathum", "9849408447", "Tehrathum", "Koshi"],
-  ]);
+  ];
 
-  const [search, setSearch] = React.useState("");
+  // const defaultTableDataKey = [
+  //   {
+  //     id: "BANS",
+  //     name: "Bangadhi",
+  //     phone: "9801984435",
+  //     address: "Bangadhi",
+  //     region: "Bheri",
+  //   },
+  //   {
+  //     id: "CTRA",
+  //     name: "Chatara",
+  //     phone: "9801984366",
+  //     address: "DHARAN",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "KALA",
+  //     name: "Kalabanjar",
+  //     phone: "9801984116",
+  //     address: "Kalabanjar",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "KLINK",
+  //     name: "Kalanki",
+  //     phone: "9801984017",
+  //     address: "Kalanki",
+  //     region: "Bagmati",
+  //   },
+  //   {
+  //     id: "SIRA",
+  //     name: "Siraha",
+  //     phone: "9801984516",
+  //     address: "Siraha",
+  //     region: "Sagarmatha",
+  //   },
+  //   {
+  //     id: "SIDH",
+  //     name: "Sidhuwa",
+  //     phone: "9810568890",
+  //     address: "Sidhuwa",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "CHSK",
+  //     name: "Chainpur",
+  //     phone: "9812367303",
+  //     address: "Chainpur",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "JOMS",
+  //     name: "Jomsom",
+  //     phone: "9846347798",
+  //     address: "Jomsom",
+  //     region: "Gandaki",
+  //   },
+  //   {
+  //     id: "RUKU",
+  //     name: "Rukumkot",
+  //     phone: "9843459842",
+  //     address: "Rukumkot",
+  //     region: "Rapti",
+  //   },
+  //   {
+  //     id: "TBAS",
+  //     name: "Tehrathum",
+  //     phone: "9849408447",
+  //     address: "Tehrathum",
+  //     region: "Koshi",
+  //   },
+  // ];
+
+  const [tableData, setTableData] = useState(initialTableData);
 
   const data = [
     { label: "10", value: "1" },
@@ -71,8 +147,11 @@ const BranchScreen = ({ navigation }) => {
     { label: "100", value: "3" },
   ];
 
-  const [value, setValue] = useState(null);
-  const [isFocus, setIsFocus] = useState(false);
+  const filteredBranches = React.useMemo(() => {
+    return tableData?.filter((el) =>
+      el[1].toLowerCase().includes(search.toLowerCase())
+    );
+  }, [tableData, search]);
 
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
@@ -131,7 +210,7 @@ const BranchScreen = ({ navigation }) => {
               />
               <Rows
                 style={{ backgroundColor: "white" }}
-                data={tableData}
+                data={filteredBranches}
                 textStyle={styles.text}
               />
             </Table>
