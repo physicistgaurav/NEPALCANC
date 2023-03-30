@@ -52,7 +52,6 @@ const LoginScreen = ({ navigation }) => {
     signInWithEmailAndPassword(authentication, email, password)
       .then((res) => {
         console.log("successful");
-        navigation.navigate("Home");
         setLoggedInUser(res.user);
       })
 

@@ -5,7 +5,6 @@ import DocumentScreen from "../screens/EmployeeScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/Profile/profileScreen";
 import RegionScreen from "../screens/RegionScreen";
-import LoginScreen from "../screens/LoginScreen";
 import FeedbackScreen from "../screens/FeedbackScreen";
 import EmployeeDetailScreen from "../screens/Profile/employeeDetailScreen";
 import PersonalDetailsScreen from "../screens/Profile/personalDetailScreen";
@@ -21,11 +20,6 @@ const Stack = createNativeStackNavigator();
 const AppStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
       <Stack.Screen
         name="Home"
         component={HomeScreen}

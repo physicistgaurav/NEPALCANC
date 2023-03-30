@@ -22,36 +22,10 @@ import { doc, QuerySnapshot } from "@firebase/firestore";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const HomeScreen = ({ navigation }) => {
-  const myempleave = firebase.firestore().collection("leaveemp");
   const [leavestaff, setLeaveStaff] = useState([]);
-
-  useEffect(async () => {
-    myempleave.onSnapshot((QuerySnapshot) => {
-      const leavestaff = [];
-      QuerySnapshot.forEach((doc) => {
-        const { empadd, empdept, empname } = doc.data();
-        leavestaff.push({
-          id: doc.id,
-          empadd,
-          empdept,
-          empname,
-        });
-      });
-      setLeaveStaff(leavestaff);
-    });
-  }, []);
-
   const { loggedInUser, setLoggedInUser } = useAuth();
-  const signOutUser = () => {
-    signOut(authentication)
-      .then((res) => {
-        console.log(res);
-        setLoggedInUser(null);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
+  const myempleave = firebase.firestore().collection("leaveemp");
 
   const homeData = [
     {
@@ -105,6 +79,37 @@ const HomeScreen = ({ navigation }) => {
 
     return username;
   }
+
+  const signOutUser = () => {
+    signOut(authentication)
+      .then((res) => {
+        console.log(res);
+        setLoggedInUser(null);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleEmployeeLeave = () => {
+    myempleave.onSnapshot((QuerySnapshot) => {
+      const leavestaff = [];
+      QuerySnapshot.forEach((doc) => {
+        const { empadd, empdept, empname } = doc.data();
+        leavestaff.push({
+          id: doc.id,
+          empadd,
+          empdept,
+          empname,
+        });
+      });
+      setLeaveStaff(leavestaff);
+    });
+  };
+
+  useEffect(() => {
+    handleEmployeeLeave();
+  }, []);
 
   return (
     <ScrollView>
