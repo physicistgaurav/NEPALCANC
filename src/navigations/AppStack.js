@@ -14,6 +14,8 @@ import LeavesScreen from "../screens/Profile/leavesScreen";
 import AttendanceScreen from "../screens/Profile/attendanceScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
 import BranchScreen from "../screens/Branch";
+import BirthdayScreen from "../screens/BirthdayScreen";
+import EmployeeBirthdaysScreen from "../screens/EmployeeBirthdayScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +61,21 @@ const AppStack = () => {
         component={BranchScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Birthday"
+        component={BirthdayScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="EmployeeBirthdays"
+        component={EmployeeBirthdaysScreen}
+        options={{ headerShown: false }}
+      />
+      {/* <Stack.Screen
+        name="EmployeeBirthdays"
+        component={Emplo}
+        options={{ headerShown: false }}
+      /> */}
     </Stack.Navigator>
   );
 };

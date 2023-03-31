@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   inputView: {
-    height: 30,
+    height: 40,
     width: 100,
     backgroundColor: "white",
     borderRadius: 3,
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   TextInput: {
-    height: 30,
+    height: 40,
     width: 100,
     flex: 1,
     padding: 10,
