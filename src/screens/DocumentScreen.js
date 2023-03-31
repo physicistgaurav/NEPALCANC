@@ -1,12 +1,28 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Card, Button } from "react-native-elements";
+import { Card, Button, Header } from "react-native-elements";
 import * as OpenAnything from "react-native-openanything";
 
 const DocumentScreen = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <Header
+          leftComponent={{ icon: "menu", color: "#fff" }}
+          centerComponent={{
+            text: "Nepal Can",
+            style: {
+              color: "#fff",
+              fontSize: 20,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 50,
+            },
+          }}
+          rightComponent={{ text: "Hello, sir", style: { color: "#fff" } }}
+        />
         <Text style={styles.heading}>Nepal Can Document Center</Text>
         <Text style={styles.bodytext}>
           <Text style={styles.bodytext2}>Warning :</Text>
@@ -77,8 +93,8 @@ const DocumentScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    padding: 20,
+    backgroundColor: "white",
+    // padding: 20,
   },
   card: {
     borderRadius: 10,
@@ -102,14 +118,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 10,
     color: "black",
-
     paddingLeft: 5,
   },
   bodytext2: {
     fontSize: 16,
     margin: 10,
     color: "red",
-
     paddingLeft: 5,
   },
 });

@@ -6,6 +6,7 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 
@@ -18,6 +19,13 @@ import { useAuth } from "../contexts/AuthContext";
 import { firebase } from "../../firebase";
 import { async } from "@firebase/util";
 import { doc, QuerySnapshot } from "@firebase/firestore";
+
+import * as Notifications from "expo-notifications";
+
+//  import library
+// get permission
+//  do push notifications on button click
+// schedule push notification
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
