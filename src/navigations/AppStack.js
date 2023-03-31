@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import EmployeeScreen from "../screens/EmployeeScreen";
-import DocumentScreen from "../screens/EmployeeScreen";
 
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/Profile/profileScreen";
@@ -16,6 +15,7 @@ import PerformanceScreen from "../screens/Profile/performanceScreen";
 import BranchScreen from "../screens/Branch";
 import BirthdayScreen from "../screens/BirthdayScreen";
 import EmployeeBirthdaysScreen from "../screens/EmployeeBirthdayScreen";
+import DocumentScreen from "../screens/DocumentScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -71,11 +71,11 @@ const AppStack = () => {
         component={EmployeeBirthdaysScreen}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
-        name="EmployeeBirthdays"
-        component={Emplo}
+      <Stack.Screen
+        name="myDocuments"
+        component={DocumentScreen}
         options={{ headerShown: false }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

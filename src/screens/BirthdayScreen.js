@@ -25,6 +25,10 @@ const BirthdayScreen = ({ navigation }) => {
     handleFetchTodayBirthday();
   }, []);
 
+  const options = { month: "short", day: "numeric" };
+  const today = new Date();
+  const formattedDate = today.toLocaleString("en-US", options);
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Birthday Notification</Text>
@@ -34,7 +38,7 @@ const BirthdayScreen = ({ navigation }) => {
           <View key={person.id} style={styles.personContainer}>
             <Image source={{ uri: person.image }} style={styles.avatar} />
             <Text style={styles.personName}>{person.name}</Text>
-            <Text style={styles.personDob}>{person.dob}</Text>
+            <Text style={styles.personDob}>{formattedDate}</Text>
           </View>
         ))}
       </View>

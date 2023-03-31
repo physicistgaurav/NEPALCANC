@@ -41,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
     {
       name: "Document \nCenter",
       myIcon: "book",
-      screen: "Documents",
+      screen: "myDocuments",
     },
     {
       name: "Regions",
