@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -11,13 +11,12 @@ import {
 } from "react-native";
 import { Header, Divider, Card } from "react-native-elements";
 
+import { Table, Row, Rows, Col } from "react-native-table-component";
+
 import { Dropdown } from "react-native-element-dropdown";
 
-import { firebase } from "../../firebase";
-import { async } from "@firebase/util";
-import { doc, QuerySnapshot } from "@firebase/firestore";
-
 const SCREEN_WIDTH = Dimensions.get("window").width;
+// const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const MyHeader = () => {
   return (
@@ -40,47 +39,106 @@ const MyHeader = () => {
   );
 };
 
-const EmployeeScreen = ({ navigation }) => {
+const BranchScreen = ({ navigation }) => {
+  const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
   const [search, setSearch] = React.useState("");
-  const [empdet, setEmpDet] = useState([]);
+  //TABLE
+  const [tableHead, setTableHead] = useState([
+    "ID",
+    "Name",
+    "phone.",
+    "Address.",
+    "Region",
+  ]);
 
-  const myempdetails = firebase.firestore().collection("empdetails");
+  const initialTableData = [
+    ["BANS", "Bangadhi", "9801984435", "Bangadhi mun.", "Bheri"],
+    ["CTRA", "Chatara", "9801984366", "DHARAN", "Koshi"],
+    ["KALA", "Kalabanjar", "9801984116", "Kalabnjar", "Koshi"],
+    ["KLINK", "Kalanki", "9801984017", "Kalanki", "Bagmati"],
+    ["SIRA", "Siraha", "9801984516", "Siraha", "Sagarmatha"],
+    ["SIDH", "Sidhuwa", "9810568890", "Sidhuwa", "Koshi"],
+    ["CHSK", "Chainpur", "9812367303", "Chainpur", "Koshi"],
+    ["JOMS", "Jomsom", "9846347798", "Jomsom", "Gandaki"],
+    ["RUKU", "Rukumkot", "9843459842", "Rukumkot", "Rapti"],
+    ["TBAS", "Tehrathum", "9849408447", "Tehrathum", "Koshi"],
+  ];
 
-  const handleFetchEmployee = () => {
-    setEmpDet([]);
-    myempdetails.onSnapshot((QuerySnapshot) => {
-      let _employees = [];
+  // const defaultTableDataKey = [
+  //   {
+  //     id: "BANS",
+  //     name: "Bangadhi",
+  //     phone: "9801984435",
+  //     address: "Bangadhi",
+  //     region: "Bheri",
+  //   },
+  //   {
+  //     id: "CTRA",
+  //     name: "Chatara",
+  //     phone: "9801984366",
+  //     address: "DHARAN",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "KALA",
+  //     name: "Kalabanjar",
+  //     phone: "9801984116",
+  //     address: "Kalabanjar",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "KLINK",
+  //     name: "Kalanki",
+  //     phone: "9801984017",
+  //     address: "Kalanki",
+  //     region: "Bagmati",
+  //   },
+  //   {
+  //     id: "SIRA",
+  //     name: "Siraha",
+  //     phone: "9801984516",
+  //     address: "Siraha",
+  //     region: "Sagarmatha",
+  //   },
+  //   {
+  //     id: "SIDH",
+  //     name: "Sidhuwa",
+  //     phone: "9810568890",
+  //     address: "Sidhuwa",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "CHSK",
+  //     name: "Chainpur",
+  //     phone: "9812367303",
+  //     address: "Chainpur",
+  //     region: "Koshi",
+  //   },
+  //   {
+  //     id: "JOMS",
+  //     name: "Jomsom",
+  //     phone: "9846347798",
+  //     address: "Jomsom",
+  //     region: "Gandaki",
+  //   },
+  //   {
+  //     id: "RUKU",
+  //     name: "Rukumkot",
+  //     phone: "9843459842",
+  //     address: "Rukumkot",
+  //     region: "Rapti",
+  //   },
+  //   {
+  //     id: "TBAS",
+  //     name: "Tehrathum",
+  //     phone: "9849408447",
+  //     address: "Tehrathum",
+  //     region: "Koshi",
+  //   },
+  // ];
 
-      QuerySnapshot.forEach((doc) => {
-        // const { branch, dept, design, email, id, imageUri, name, phone } =
-        //   doc.data();
-        // empdet.push({
-        //   branch,
-        //   dept,
-        //   design,
-        //   email,
-        //   id,
-        //   imageUri,
-        //   name,
-        //   phone,
-        // });
-
-        _employees.push({ ...doc.data() });
-      });
-
-      setEmpDet(_employees);
-    });
-  };
-
-  const filteredEmployees = React.useMemo(() => {
-    return empdet.filter((el) =>
-      el?.name?.toLowerCase()?.includes(search.toLowerCase())
-    );
-  }, [search, empdet]);
-
-  useEffect(() => {
-    handleFetchEmployee();
-  }, []);
+  const [tableData, setTableData] = useState(initialTableData);
 
   const data = [
     { label: "10", value: "1" },
@@ -89,8 +147,11 @@ const EmployeeScreen = ({ navigation }) => {
     { label: "100", value: "3" },
   ];
 
-  const [value, setValue] = useState(null);
-  const [isFocus, setIsFocus] = useState(false);
+  const filteredBranches = React.useMemo(() => {
+    return tableData?.filter((el) =>
+      el[1].toLowerCase().includes(search.toLowerCase())
+    );
+  }, [tableData, search]);
 
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
@@ -99,14 +160,12 @@ const EmployeeScreen = ({ navigation }) => {
         <View style={styles.subContainer}>
           <View style={styles.backButton}>
             <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-              <Text style={styles.backText}>
-                {"< Home / Feedback / Document Center"}
-              </Text>
+              <Text style={styles.backText}>{"< Back / Home"}</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.downbody2}>
-            <Text style={styles.bodyhead}>Nepal Can Employees</Text>
+            <Text style={styles.bodyhead}>Branches</Text>
             <Divider
               style={{ color: "grey", width: 370, margin: 2, paddingLeft: 5 }}
             ></Divider>
@@ -142,34 +201,19 @@ const EmployeeScreen = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </View>
-
-          <View style={styles.cardContainer}>
-            {filteredEmployees.map((emp) => (
-              <Card key={emp.id} containerStyle={styles.card}>
-                <View style={styles.cardContent}>
-                  <Image
-                    style={{
-                      width: SCREEN_WIDTH * 0.2,
-                      height: SCREEN_WIDTH * 0.2,
-                      borderRadius: 40,
-                      paddingRight: 10,
-                    }}
-                    source={{ uri: emp.imageUri }}
-                  />
-                  <View style={styles.cardInfoContainer}>
-                    <View style={styles.cardInfo}>
-                      <Text style={styles.cardTitle}>{emp.name}</Text>
-                      <Text style={styles.cardSubtitle}>{emp.id}</Text>
-                      <Text style={styles.cardSubtitle}>{emp.phone}</Text>
-                      <Text style={styles.cardSubtitle}>{emp.email}</Text>
-                      <Text style={styles.cardSubtitle}>{emp.dept}</Text>
-                      <Text style={styles.cardSubtitle}>{emp.design}</Text>
-                      <Text style={styles.cardSubtitle}>{emp.branch}</Text>
-                    </View>
-                  </View>
-                </View>
-              </Card>
-            ))}
+          <View style={styles.tableConatiner}>
+            <Table borderStyle={{ borderWidth: 2, borderColor: "#696664" }}>
+              <Row
+                data={tableHead}
+                style={styles.head}
+                textStyle={styles.textHead}
+              />
+              <Rows
+                style={{ backgroundColor: "white" }}
+                data={filteredBranches}
+                textStyle={styles.text}
+              />
+            </Table>
           </View>
         </View>
       </View>
@@ -177,7 +221,7 @@ const EmployeeScreen = ({ navigation }) => {
   );
 };
 
-export default EmployeeScreen;
+export default BranchScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -333,14 +377,7 @@ const styles = StyleSheet.create({
     color: "#0257bf",
   },
   cardSubtitle: {
-    flexDirection: "column",
     fontSize: 16,
     color: "#8588c1",
-  },
-  bullettext: {
-    fontSize: 16,
-    color: "#432316",
-    padding: 2,
-    lineHeight: 25,
   },
 });

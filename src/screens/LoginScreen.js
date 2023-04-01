@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   Dimensions,
@@ -6,17 +5,18 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
   View,
 } from "react-native";
 import { Divider } from "@rneui/themed";
 
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import { authentication } from "../../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
 } from "firebase/auth";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -26,6 +26,10 @@ const SCREEN_HEIGHT = Dimensions.get("window").height;
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = React.useState(null);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const { setLoggedInUser } = useAuth();
   const inputRef = React.useRef();
@@ -35,23 +39,27 @@ const LoginScreen = ({ navigation }) => {
     createUserWithEmailAndPassword(authentication, email, password)
       .then((res) => {
         console.log(res.user);
-        setLoggedInUser(res);
+        setLoggedInUser(res.user);
       })
       .catch((re) => {
         console.log(re);
       });
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
+    setIsLoading(true);
+
     signInWithEmailAndPassword(authentication, email, password)
       .then((res) => {
         console.log("successful");
-        navigation.navigate("Home");
         setLoggedInUser(res.user);
       })
+
       .catch((err) => {
         console.log(err);
-      });
+        setError("Incorrect Email/Password");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -76,6 +84,7 @@ const LoginScreen = ({ navigation }) => {
             ref={inputRef}
             style={styles.TextInput}
             placeholder="Enter your email"
+            // defaultValue="gaurav@gmail.com"
             placeholderTextColor="#003f5c"
             onChangeText={(email) => setEmail(email)}
           />
@@ -90,24 +99,45 @@ const LoginScreen = ({ navigation }) => {
             ref={passwordRef}
             style={styles.TextInput}
             placeholder="Enter your password"
+            // defaultValue="gaurav123"
             placeholderTextColor="#003f5c"
-            secureTextEntry={true}
+            secureTextEntry={!showPassword}
             onChangeText={(password) => setPassword(password)}
           />
+          <TouchableOpacity
+            style={{ position: "absolute", right: 15, top: 10 }}
+            onPress={() => setShowPassword(!showPassword)}
+          >
+            <Icon
+              name={showPassword ? "eye-slash" : "eye"}
+              size={20}
+              color="#777"
+            />
+          </TouchableOpacity>
         </TouchableOpacity>
 
-        {/* <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Enter your password"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-            onChangeText={(password) => setPassword(password)}
-          />
-        </View> */}
+        {error && <Text style={styles.errorText}>{error}</Text>}
+
+        {/* {isLoading ? (
+          <ActivityIndicator size="large" color="black" />
+        ) : (
+          <View flexDirection="row">
+            <TouchableOpacity onPress={handleSignIn} style={styles.button}>
+              <Text style={styles.buttonText}>Log in</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleSignUp} style={styles.button}>
+              <Text style={styles.buttonText}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+        )} */}
+
         <View flexDirection="row">
           <TouchableOpacity onPress={handleSignIn} style={styles.button}>
-            <Text style={styles.buttonText}>Log in</Text>
+            {isLoading ? (
+              <ActivityIndicator size="small" color="black" />
+            ) : (
+              <Text style={styles.buttonText}>Log in</Text>
+            )}
           </TouchableOpacity>
           <TouchableOpacity onPress={handleSignUp} style={styles.button}>
             <Text style={styles.buttonText}>Sign up</Text>
@@ -144,7 +174,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e9ecef",
     margin: 50,
     width: 320,
-    height: 320,
+    height: 340,
     borderRadius: 4,
     paddingLeft: 10,
     paddingRight: 10,
@@ -189,5 +219,11 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 18,
+  },
+  errorText: {
+    fontSize: 14,
+    color: "red",
+    marginTop: 10,
+    paddingLeft: 15,
   },
 });

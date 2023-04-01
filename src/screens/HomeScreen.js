@@ -6,8 +6,9 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { authentication } from "../../firebase";
 import { signOut } from "firebase/auth";
@@ -15,25 +16,24 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Header, Icon, Card, Divider } from "react-native-elements";
 import { useAuth } from "../contexts/AuthContext";
 
+import { firebase } from "../../firebase";
+import { async } from "@firebase/util";
+import { doc, QuerySnapshot } from "@firebase/firestore";
+
+import * as Notifications from "expo-notifications";
+
+//  import library
+// get permission
+//  do push notifications on button click
+// schedule push notification
+
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const HomeScreen = ({ navigation }) => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
+  const [leavestaff, setLeaveStaff] = useState([]);
   const { loggedInUser, setLoggedInUser } = useAuth();
 
-  console.log(loggedInUser);
-
-  const signOutUser = () => {
-    signOut(authentication)
-      .then((res) => {
-        console.log(res);
-        setLoggedInUser(null);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const myempleave = firebase.firestore().collection("leaveemp");
 
   const homeData = [
     {
@@ -49,7 +49,7 @@ const HomeScreen = ({ navigation }) => {
     {
       name: "Document \nCenter",
       myIcon: "book",
-      screen: "Documents",
+      screen: "myDocuments",
     },
     {
       name: "Regions",
@@ -78,6 +78,47 @@ const HomeScreen = ({ navigation }) => {
     },
   ];
 
+  function extractUsername(email) {
+    if (!loggedInUser) return "";
+
+    var parts = email.split("@");
+    var username = parts[0];
+    username = username.charAt(0).toUpperCase() + username.slice(1);
+
+    return username;
+  }
+
+  const signOutUser = () => {
+    signOut(authentication)
+      .then((res) => {
+        console.log(res);
+        setLoggedInUser(null);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleEmployeeLeave = () => {
+    myempleave.onSnapshot((QuerySnapshot) => {
+      const leavestaff = [];
+      QuerySnapshot.forEach((doc) => {
+        const { empadd, empdept, empname } = doc.data();
+        leavestaff.push({
+          id: doc.id,
+          empadd,
+          empdept,
+          empname,
+        });
+      });
+      setLeaveStaff(leavestaff);
+    });
+  };
+
+  useEffect(() => {
+    handleEmployeeLeave();
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.main}>
@@ -101,7 +142,10 @@ const HomeScreen = ({ navigation }) => {
             onPress: signOutUser,
           }}
         />
-        <Text style={styles.headtext}> Welcome, {loggedInUser?.email}</Text>
+        <Text style={styles.headtext}>
+          {" "}
+          Welcome, {extractUsername(loggedInUser?.email)}
+        </Text>
 
         <View style={styles.cardContainer}>
           {homeData.map((homeData, index) => (
@@ -138,27 +182,11 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.bulletContainer}>
           <Text style={styles.bullettitle}>On Leave Today</Text>
           <View style={styles.bulletList}>
-            <Text style={styles.bullettext}>
-              {"\u25CF" + " Ram Singh Khapangi - Ilam - Operation"}
-            </Text>
-            <Text style={styles.bullettext}>
-              {"\u25CF" + " John Wick -Tinkune -Finance"}
-            </Text>
-            <Text style={styles.bullettext}>
-              {"\u25CF" + " Elon  Musk -Pokhara -BD"}
-            </Text>
-            <Text style={styles.bullettext}>
-              {"\u25CF" + " Dave Mustane -Birgunj -Finance"}
-            </Text>
-            <Text style={styles.bullettext}>
-              {"\u25CF" + " Amitabh Bachhan -Urlabari -Admin"}
-            </Text>
-            <Text style={styles.bullettext}>
-              {"\u25CF" + " Sanzai Kc -Kathmandu -IT"}
-            </Text>
-            <Text style={styles.bullettext}>
-              {"\u25CF" + " Tony Soprano -Hetauda -Cleaning"}
-            </Text>
+            {leavestaff.map((staff) => (
+              <Text style={styles.bullettext} key={staff.id}>
+                {"\u25CF"} {staff.empname}, {staff.empadd}, {staff.empdept}
+              </Text>
+            ))}
           </View>
         </View>
       </View>
