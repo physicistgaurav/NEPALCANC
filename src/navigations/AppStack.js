@@ -1,7 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import EmployeeScreen from "../screens/EmployeeScreen";
-import DocumentScreen from "../screens/EmployeeScreen";
-
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/Profile/profileScreen";
 import RegionScreen from "../screens/RegionScreen";
@@ -13,7 +11,9 @@ import EmergencyContactScreen from "../screens/Profile/emergencyContactScreen";
 import LeavesScreen from "../screens/Profile/leavesScreen";
 import AttendanceScreen from "../screens/Profile/attendanceScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
-
+import DocumentScreen from "../screens/Profile/documentScreen";
+import AlertScreen from "../screens/Profile/alert";
+import Dialog from "../screens/Profile/dialog";
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +41,10 @@ const AppStack = () => {
       <Stack.Screen name="Leaves" component={LeavesScreen} />
       <Stack.Screen name="Attendance" component={AttendanceScreen} />
       <Stack.Screen name="Performance" component={PerformanceScreen} />
+      <Stack.Screen name="Alerts" component={AlertScreen} />
+      <Stack.Screen name="Dialog" component={Dialog} />
+
+
 
       <Stack.Screen
         name="Employee"
