@@ -11,7 +11,6 @@ import EmergencyContactScreen from "../screens/Profile/emergencyContactScreen";
 import LeavesScreen from "../screens/Profile/leavesScreen";
 import AttendanceScreen from "../screens/Profile/attendanceScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
-import DocumentScreen from "../screens/Profile/profileDocumentScreen";
 import AlertScreen from "../screens/Profile/alert";
 import Dialog from "../screens/Profile/dialog";
 import BranchScreen from "../screens/Branch";
@@ -21,6 +20,7 @@ import HelpScreen from "../screens/HelpScreen";
 import DocumentOnlyScreen from "../screens/Profile/documentonlyscreen";
 import ProfileDocumentScreen from "../screens/Profile/profileDocumentScreen";
 import DocumentCenterScreen from "../screens/DocumentScreen";
+import TicketFormScreen from "../screens/TicketFormScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -97,6 +97,12 @@ const AppStack = () => {
         component={HelpScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="ticket"
+        component={TicketFormScreen}
+        options={{ headerShown: false }}
+      />
+      
     </Stack.Navigator>
   );
 };
