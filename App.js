@@ -10,6 +10,12 @@ import AppStack from "./src/navigations/AppStack";
 import GuestStack from "./src/navigations/GuestStack";
 
 import AuthContext, { AuthProvider, useAuth } from "./src/contexts/AuthContext";
+import DocumentScreen from "./src/screens/Profile/documentScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
+import DropdownScreen from "./src/screens/Profile/dropdown";
+import AppOnly from "./src/screens/Profile/help";
+import ProfileScreen from "./src/screens/Profile/profileScreen";
+import DocumentOnlyScreen from "./src/screens/Profile/documentonlyscreen";
 
 const AppContent = () => {
   const { loggedInUser } = useAuth();
@@ -22,8 +28,12 @@ const AppContent = () => {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <SafeAreaView>
+      <DocumentOnlyScreen/>
+    </SafeAreaView>
+
+    // <AuthProvider>
+    //   <AppContent />
+    // </AuthProvider>
   );
 }

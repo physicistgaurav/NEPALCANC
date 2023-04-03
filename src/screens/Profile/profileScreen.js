@@ -4,7 +4,6 @@ import {
   FlatList,
   Text,
   View,
-  SafeAreaView,
   Dimensions,
   TouchableOpacity,
 } from "react-native";
@@ -16,7 +15,7 @@ const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const ProfileScreen = ({ navigation }) => {
-  const lists = [
+  const profileLists = [
     {
       index: "1",
       name: "Employee \n Details ",
@@ -67,87 +66,83 @@ const ProfileScreen = ({ navigation }) => {
     },
   ];
   return (
-    <SafeAreaView>
-      <View style={styles.container1}>
-        <View style={{ height: 25 }} />
-        <Avatar
-          style={styles.avatar}
-          rounded
-          source={require("../../../assets/adaptive-icon.png")}
-        />
-        <View style={{ height: 25 }} />
-
-        <FlatList
-          numColumns="2"
-          style={styles.FlatList}
-          keyExtractor={(key) => {
-            return key.index;
-          }}
-          vertical
-          data={lists}
-          renderItem={({ item }) => {
-            console.log(item.name);
-            return (
-              <TouchableOpacity
-                onPress={(key) => navigation.navigate(item.route)}
-              >
-                <View style={[styles.container, styles.oneLine]}>
-                  <View style={[styles.container2]}>
-                    <IconButton
-                      icon={
-                        <MaterialCommunityIcons
-                          name={item.icon}
-                          color="red"
-                          size={30}
-                        />
-                      }
-                      disabled
-                    />
-                  </View>
-
-                  <View style={[styles.container2]}>
-                    <Text style={styles.textStyle}> {item.name}</Text>
-                  </View>
+    <View style={styles.screenContainer}>
+      <View style={{ height: 25 }} />
+      <Avatar
+        style={styles.avatar}
+        source={require("../../../assets/profileDefaultUser.png")}
+      />
+      <View style={{ height: 25 }} />
+      <FlatList
+        numColumns="2"
+        // style={styles.FlatList}
+        // keyExtractor={(key) => {
+        //   return key.index;
+        // }}
+        // vertical
+        data={profileLists}
+        renderItem={({ item }) => {
+          // console.log(item.name);
+          return (
+            <TouchableOpacity
+              onPress={(key) => navigation.navigate(item.route)}
+            >
+              <View style={[styles.flatlistContainer, styles.oneline]}>
+                <View style={[styles.insideFlatlistContainer]}>
+                  <IconButton
+                    icon={
+                      <MaterialCommunityIcons
+                        name={item.icon}
+                        color="#246EE9"
+                        size={25}
+                      />
+                    }
+                    disabled
+                  />
                 </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
-      </View>
-    </SafeAreaView>
+
+                <View style={[styles.insideFlatlistContainer]}>
+                  <Text style={styles.textStyle}> {item.name}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          );
+        }}
+      />
+    </View>
   );
 };
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-  textStyle: {
-    fontSize: 20,
-    color: "black",
-  },
-  listStyle: {
-    textAlign: "center",
-  },
-  container: {
-    height: 60,
-    width: 205,
-    backgroundColor: "white",
-    margin: 10,
-    elevation: 5,
-  },
-  container1: {
+  screenContainer: {
     height: SCREEN_HEIGHT,
     width: SCREEN_WIDTH,
-    backgroundColor: "white",
-  },
-  oneLine: {
-    flexDirection: "row",
-  },
-  container2: {
-    justifyContent: "center",
+    backgroundColor: "#fffafa",
   },
   avatar: {
-    width: 100,
-    height: 100,
+    width: 125,
+    height: 125,
     alignSelf: "center",
+  },
+  flatlistContainer: {
+    // height: 55,
+    width: 200,
+    backgroundColor: "#f0f8ff",
+    elevation: 2,
+    alignContent: "center",
+    marginLeft: 15,
+    marginRight: 5,
+    marginTop: 10,
+  },
+  oneline: {
+    flexDirection: "row",
+  },
+  insideFlatlistContainer: {
+    justifyContent: "center",
+  },
+  textStyle: {
+    fontSize: 18,
+    color: "black",
   },
 });
