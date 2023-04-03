@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { Divider } from "react-native-elements";
 
 import { firebase } from "../../firebase";
@@ -26,35 +33,47 @@ const ViewTickets = () => {
     handleFetchTickets();
   }, []);
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.heading}>Tickets Created</Text>
-        <Divider
-          style={{ marginLeft: 10, marginRight: 10, marginBottom: 20 }}
-        ></Divider>
-        {myTickets.map((ticketshelp) => (
-          <View key={ticketshelp.id} style={styles.ticketshelpContainer}>
-            <Text style={styles.ticketTitle}> Title: {ticketshelp.title}</Text>
-            <Text style={styles.ticketDescription}>
-              Description: {ticketshelp.description}
-            </Text>
-            <Text style={styles.ticketDescription}>
-              Department: {ticketshelp.department}
-            </Text>
-            <Text style={styles.ticketDescription}>
-              Responsible: {ticketshelp.responsible}
-            </Text>
-            <Text style={styles.ticketDescription}>
-              Priority: {ticketshelp.priority}
-            </Text>
-            <Text style={styles.ticketDescription}>
-              Remarks: {ticketshelp.remarks}
-            </Text>
-            <Divider style={{ marginTop: 10, marginBottom: 10 }}></Divider>
-          </View>
-        ))}
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <Text style={styles.heading}>Tickets Created</Text>
+          <Divider
+            style={{ marginLeft: 10, marginRight: 10, marginBottom: 20 }}
+          ></Divider>
+          {myTickets.map((ticketshelp) => (
+            <View key={ticketshelp.id} style={styles.ticketshelpContainer}>
+              <Text style={styles.ticketTitle}>
+                {" "}
+                Title: {ticketshelp.title}
+              </Text>
+              <Text style={styles.ticketDescription}>
+                Description: {ticketshelp.description}
+              </Text>
+              <Text style={styles.ticketDescription}>
+                Department: {ticketshelp.department}
+              </Text>
+              <Text style={styles.ticketDescription}>
+                Responsible: {ticketshelp.responsible}
+              </Text>
+              <Text style={styles.ticketDescription}>
+                Priority: {ticketshelp.priority}
+              </Text>
+              <Text style={styles.ticketDescription}>
+                Remarks: {ticketshelp.remarks}
+              </Text>
+              <Divider
+                style={{
+                  height: 2,
+                  backgroundColor: "black",
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}
+              />
+            </View>
+          ))}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
