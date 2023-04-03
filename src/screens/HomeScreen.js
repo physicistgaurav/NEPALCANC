@@ -2,25 +2,20 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   Dimensions,
   ScrollView,
   TouchableOpacity,
-  Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 
 import { authentication } from "../../firebase";
 import { signOut } from "firebase/auth";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { Header, Icon, Card, Divider } from "react-native-elements";
+import { Ionicons } from "@expo/vector-icons";
+import { Header, Card } from "react-native-elements";
 import { useAuth } from "../contexts/AuthContext";
 
 import { firebase } from "../../firebase";
-import { async } from "@firebase/util";
-import { doc, QuerySnapshot } from "@firebase/firestore";
 
-import * as Notifications from "expo-notifications";
 
 //  import library
 // get permission

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  FlatList,
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, FlatList, Text, View, Dimensions, TouchableOpacity, ScrollView } from "react-native";
 import { IconButton } from "@react-native-material/core";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Avatar } from "@rneui/base/dist/Avatar/Avatar";
@@ -73,43 +66,40 @@ const ProfileScreen = ({ navigation }) => {
         source={require("../../../assets/profileDefaultUser.png")}
       />
       <View style={{ height: 25 }} />
-      <FlatList
-        numColumns="2"
-        // style={styles.FlatList}
-        // keyExtractor={(key) => {
-        //   return key.index;
-        // }}
-        // vertical
-        data={profileLists}
-        renderItem={({ item }) => {
-          // console.log(item.name);
-          return (
-            <TouchableOpacity
-              onPress={(key) => navigation.navigate(item.route)}
-            >
-              <View style={[styles.flatlistContainer, styles.oneline]}>
-                <View style={[styles.insideFlatlistContainer]}>
-                  <IconButton
-                    icon={
-                      <MaterialCommunityIcons
-                        name={item.icon}
-                        color="#246EE9"
-                        size={25}
-                      />
-                    }
-                    disabled
-                  />
-                </View>
+      <ScrollView horizontal>
+        <FlatList
+          numColumns="2"
+          data={profileLists}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={(key) => navigation.navigate(item.route)}
+              >
+                <View style={[styles.flatlistContainer, styles.oneline]}>
+                  <View style={[styles.insideFlatlistContainer]}>
+                    <IconButton
+                      icon={
+                        <MaterialCommunityIcons
+                          name={item.icon}
+                          color="#246EE9"
+                          size={25}
+                        />
+                      }
+                      disabled
+                    />
+                  </View>
 
-                <View style={[styles.insideFlatlistContainer]}>
-                  <Text style={styles.textStyle}> {item.name}</Text>
+                  <View style={[styles.insideFlatlistContainer]}>
+                    <Text style={styles.textStyle}> {item.name}</Text>
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-      />
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </ScrollView>
     </View>
+
   );
 };
 export default ProfileScreen;
@@ -126,13 +116,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   flatlistContainer: {
-    // height: 55,
     width: 200,
     backgroundColor: "#f0f8ff",
     elevation: 2,
     alignContent: "center",
     marginLeft: 15,
-    marginRight: 5,
+    marginRight: 10,
     marginTop: 10,
   },
   oneline: {

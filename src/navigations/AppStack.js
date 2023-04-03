@@ -102,7 +102,7 @@ const AppStack = () => {
         component={TicketFormScreen}
         options={{ headerShown: false }}
       />
-      
+
     </Stack.Navigator>
   );
 };

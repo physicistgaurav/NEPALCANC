@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Dimensions, Text } from "react-native";
+import { View, StyleSheet, FlatList, Dimensions, Text, ScrollView } from "react-native";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -17,22 +17,24 @@ const PersonalDetailsScreen = () => {
   ];
   return (
     <View style={styles.screenContainer}>
-      <FlatList
-        data={personalDetail}
-        renderItem={({ item }) => {
-          return (
-            <View style={[styles.flatlistContainer, styles.oneLine]}>
-              <View style={styles.flatlistContainer1}>
-                <Text style={styles.textStyle}> {item.sn}</Text>
+      <ScrollView horizontal>
+        <FlatList
+          data={personalDetail}
+          renderItem={({ item }) => {
+            return (
+              <View style={[styles.flatlistContainer, styles.oneLine]}>
+                <View style={styles.flatlistContainer1}>
+                  <Text style={styles.textStyle}> {item.sn}</Text>
+                </View>
+                <View style={{ width: 20 }} />
+                <View>
+                  <Text style={styles.textStyle}>{item.category}  </Text>
+                </View>
               </View>
-              <View style={{ width: 20 }} />
-              <View>
-                <Text style={styles.textStyle}>{item.category}</Text>
-              </View>
-            </View>
-          );
-        }}
-      />
+            );
+          }}
+        />
+      </ScrollView>
     </View>
   );
 };
