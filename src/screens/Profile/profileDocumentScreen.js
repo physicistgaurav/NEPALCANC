@@ -5,6 +5,7 @@ import {
   Modal,
   Dimensions,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { Icon, Text } from "react-native-elements";
 import AppOnly from "./widgets/dropdown";
@@ -19,64 +20,32 @@ const ProfileDocumentScreen = () => {
   return (
     <View style={styles.container2}>
       <DocumentOnlyScreen />
-      <View>
+      <View style={styles.container2}>
         <Modal visible={showModal} transparent={true}>
           <View style={styles.modalView}>
-            <Text style={{ fontSize: 40, color: 'red' }}>Upload Employee Documents</Text>
-            <Text style={{ fontSize: 20 }}>Employee :</Text>
-            <AppOnly />
-            <Text style={{ fontSize: 20 }}>Category :</Text>
-            <AppOnly />
-            <Text style={{ fontSize: 20 }}>Label :</Text>
-            <TextInput style={{
-              width: "100%",
-              height: 25,
-              borderWidth: 0.5,
-              alignSelf: "center",
-              marginTop: 10,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              // paddingLeft: 15,
-              // paddingRight: 15,
-              backgroundColor: 'white',
-            }} />
-            <Text style={{ fontSize: 20 }}>Expiry date :</Text>
-            <TextInput style={{
-              width: "100%",
-              height: 25,
-              borderWidth: 0.5,
-              alignSelf: "center",
-              marginTop: 10,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              // paddingLeft: 15,
-              // paddingRight: 15,
-              backgroundColor: 'white',
-            }} />
-            <Text style={{ fontSize: 20 }}>Document :</Text>
-            <TextInput style={{
-              width: "100%",
-              height: 25,
-              borderWidth: 0.5,
-              alignSelf: "center",
-              marginTop: 10,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              // paddingLeft: 15,
-              // paddingRight: 15,
-              backgroundColor: 'white',
-            }} />
-
-            <TouchableOpacity onPress={() => setShowModal(false)}>
-              <View style={styles.oneLine}>
-                <Text>Hello</Text>
-                <Icon name="add" />
-                <Text style={styles.textStyle}>Add Documents</Text>
-              </View>
-            </TouchableOpacity>
+            <ScrollView>
+              <Text style={{ fontSize: 40, color: 'red' }}>Upload Employee Documents</Text>
+              <Text style={{ fontSize: 20 }}>Employee :</Text>
+              <AppOnly />
+              <Text style={{ fontSize: 20 }}>Category :</Text>
+              <AppOnly />
+              <Text style={{ fontSize: 20 }}>Label :</Text>
+              <TextInput style={styles.textInput}
+                underlineColor="transparent" activeUnderlineColor="false"/>
+              <Text style={{ fontSize: 20 }}>Expiry date :</Text>
+              <TextInput style={styles.textInput}
+                underlineColor="transparent" activeUnderlineColor="false"/>
+                <Text style={{ fontSize: 20 }}>Document :</Text>
+              <TextInput style={styles.textInput}
+                underlineColor="transparent" activeUnderlineColor="false"/>
+                <TouchableOpacity onPress={() => setShowModal(false)}>
+                <View style={styles.oneLine}>
+                  <Text>Hello</Text>
+                  <Icon name="add" />
+                  <Text style={styles.textStyle}>Add Documents</Text>
+                </View>
+              </TouchableOpacity>
+            </ScrollView>
           </View>
         </Modal>
       </View>
@@ -97,12 +66,12 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   modalView: {
-    height: SCREEN_HEIGHT - 250,
-    backgroundColor: "white",
-    margin: SCREEN_WIDTH - 400,
+    height: '85%',
+    width: '90%',
     elevation: 20,
     borderRadius: 25,
     padding: 30,
+    margin: '5%',
     backgroundColor: "#e6ffff",
   },
   btncontainer: {
@@ -126,8 +95,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    top: SCREEN_HEIGHT - 150,
+    bottom: '9%',
     borderRadius: 8,
+  },
+  textInput: {
+    width: "100%",
+    height: 25,
+    borderWidth: 0.5,
+    marginTop: 10,
+    backgroundColor: 'white',
   },
   btnText: {
     color: "white",
