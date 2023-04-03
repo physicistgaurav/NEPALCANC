@@ -3,7 +3,7 @@ import React from "react";
 import { Card, Button, Header, Divider } from "react-native-elements";
 import { FontAwesome } from "@expo/vector-icons";
 
-const HelpScreen = () => {
+const HelpScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Header
@@ -31,7 +31,7 @@ const HelpScreen = () => {
         restrictions.
       </Text>
       <TouchableOpacity
-        // onPress={onPress}
+        onPress={() => navigation.navigate("ticket")}
         style={styles.btn}
       >
         <FontAwesome

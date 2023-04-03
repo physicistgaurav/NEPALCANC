@@ -17,6 +17,7 @@ import BirthdayScreen from "../screens/BirthdayScreen";
 import EmployeeBirthdaysScreen from "../screens/EmployeeBirthdayScreen";
 import DocumentScreen from "../screens/DocumentScreen";
 import HelpScreen from "../screens/HelpScreen";
+import TicketFormScreen from "../screens/TicketFormScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -80,6 +81,11 @@ const AppStack = () => {
       <Stack.Screen
         name="Help"
         component={HelpScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ticket"
+        component={TicketFormScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
