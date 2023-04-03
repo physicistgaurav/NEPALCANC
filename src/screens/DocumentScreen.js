@@ -3,7 +3,7 @@ import React from "react";
 import { Card, Button, Header } from "react-native-elements";
 import * as OpenAnything from "react-native-openanything";
 
-const DocumentCenterScreen = () => {
+const ProfileDocumentScreen = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DocumentCenterScreen;
+export default ProfileDocumentScreen;

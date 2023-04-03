@@ -64,6 +64,18 @@ const HelpScreen = ({ navigation }) => {
           <Text style={styles.ticketbody}> View Details</Text>
         </Card>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("viewtickets")}
+        style={styles.btn2}
+      >
+        <FontAwesome
+          name="eye"
+          size={20}
+          color="#8ec7cf"
+          style={styles.print}
+        />
+        <Text style={styles.btntext}>View Ticket</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -104,6 +116,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginLeft: 15,
+  },
+  btn2: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#8ec7cf",
+    width: 180,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginLeft: 15,
+    marginTop: 15,
   },
   print: {
     marginRight: 10,

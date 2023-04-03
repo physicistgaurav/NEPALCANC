@@ -16,11 +16,13 @@ import DropdownScreen from "./src/screens/Profile/dropdown";
 import AppOnly from "./src/screens/Profile/help";
 import ProfileScreen from "./src/screens/Profile/profileScreen";
 import DocumentOnlyScreen from "./src/screens/Profile/documentonlyscreen";
+import TicketFormScreen from "./src/screens/TicketFormScreen";
 import EmployeeDetailScreen from "./src/screens/Profile/employeeDetailScreen";
 import PersonalDetailsScreen from "./src/screens/Profile/personalDetailScreen";
 import BankDetailScreen from "./src/screens/Profile/bankDetailScreen";
 import EmergencyContactScreen from "./src/screens/Profile/emergencyContactScreen";
 import ProfileDocumentScreen from "./src/screens/Profile/profileDocumentScreen";
+import LeavesScreen from "./src/screens/Profile/leavesScreen";
 
 const AppContent = () => {
   const { loggedInUser } = useAuth();
@@ -33,9 +35,9 @@ const AppContent = () => {
 
 export default function App() {
   return (
-    // <SafeAreaView>
-    //   <ProfileDocumentScreen/>
-    // </SafeAreaView>
+//     <SafeAreaView>
+// <LeavesScreen/>   
+//  </SafeAreaView>
 
     <AuthProvider>
       <AppContent />
