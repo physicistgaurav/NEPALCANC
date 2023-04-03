@@ -116,7 +116,6 @@ const LeavesScreen = () => {
   const [description, setDescription] = useState('No Data');
 
   const HandleLeaveTouch = (item)=> {
-    console.log(item.key)
     setIndex(item.index);
     setReason(item.reason);
     setStartDate(item.startDate);
