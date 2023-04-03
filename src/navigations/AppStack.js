@@ -16,8 +16,10 @@ import Dialog from "../screens/Profile/dialog";
 import BranchScreen from "../screens/Branch";
 import BirthdayScreen from "../screens/BirthdayScreen";
 import EmployeeBirthdaysScreen from "../screens/EmployeeBirthdayScreen";
-import DocumentScreen from "../screens/DocumentScreen";
 import HelpScreen from "../screens/HelpScreen";
+import DocumentOnlyScreen from "../screens/Profile/documentonlyscreen";
+import ProfileDocumentScreen from "../screens/Profile/profileDocumentScreen";
+import DocumentCenterScreen from "../screens/DocumentScreen";
 import TicketFormScreen from "../screens/TicketFormScreen";
 
 const Stack = createNativeStackNavigator();
@@ -79,9 +81,16 @@ const AppStack = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name="Documents"
+        component={ProfileDocumentScreen}
+      />
+      <Stack.Screen
         name="myDocuments"
-        component={DocumentScreen}
-        options={{ headerShown: false }}
+        component={DocumentCenterScreen}
+      />
+      <Stack.Screen
+        name="DocumentsOnly"
+        component={DocumentOnlyScreen}
       />
       <Stack.Screen
         name="Help"
