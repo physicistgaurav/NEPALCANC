@@ -41,7 +41,7 @@ const AppOnly = () => {
     <View style={{ flex: 0 }}>
       <TouchableOpacity
         style={{
-          width: "95%",
+          width: "100%",
           height: 30,
           borderRadius: 10,
           borderWidth: 0.5,

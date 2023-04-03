@@ -17,8 +17,8 @@ import Dialog from "../screens/Profile/dialog";
 import BranchScreen from "../screens/Branch";
 import BirthdayScreen from "../screens/BirthdayScreen";
 import EmployeeBirthdaysScreen from "../screens/EmployeeBirthdayScreen";
-import DocumentScreen from "../screens/DocumentScreen";
 import HelpScreen from "../screens/HelpScreen";
+import DocumentOnlyScreen from "../screens/Profile/documentonlyscreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -81,7 +81,10 @@ const AppStack = () => {
       <Stack.Screen
         name="myDocuments"
         component={DocumentScreen}
-        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Documents"
+        component={DocumentOnlyScreen}
       />
       <Stack.Screen
         name="Help"

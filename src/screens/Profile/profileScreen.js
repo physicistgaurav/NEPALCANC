@@ -44,7 +44,7 @@ const ProfileScreen = ({ navigation }) => {
       index: "5",
       name: "Documents",
       icon: "file",
-      route: "Documents",
+      route: "myDocuments",
     },
     {
       index: "6",
