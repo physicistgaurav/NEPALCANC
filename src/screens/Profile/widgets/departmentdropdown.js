@@ -38,11 +38,10 @@ var DepartmentDropDownItems = [
     name: "BD",
   },
 ];
-const DepartmentDropDownMenu = () => {
+const DepartmentDropDownMenu = ({ department, onChangeDepartment }) => {
   const [search, setSearch] = useState("");
   const [clicked, setClicked] = useState(false);
   const [data, setData] = useState(DepartmentDropDownItems);
-  const [department, setDepartment] = useState("");
   const searchRef = useRef();
   const onSearch = (search) => {
     if (search !== "") {
@@ -140,7 +139,7 @@ const DepartmentDropDownMenu = () => {
                     paddingRight: 10,
                   }}
                   onPress={() => {
-                    setDepartment(item.name);
+                    onChangeDepartment(item.name);
                     setClicked(!clicked);
                     onSearch("");
                     setSearch("");

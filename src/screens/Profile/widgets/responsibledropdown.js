@@ -38,11 +38,11 @@ var ResponsibleItems = [
     name: "Jeewan Gyawali",
   },
 ];
-const ResponsibleDropDownMenu = () => {
+const ResponsibleDropDownMenu = ({ responsible, onChangeResponsible }) => {
   const [search, setSearch] = useState("");
   const [clicked, setClicked] = useState(false);
   const [data, setData] = useState(ResponsibleItems);
-  const [responsible, setResponsible] = useState("");
+
   const searchRef = useRef();
   const onSearch = (search) => {
     if (search !== "") {
@@ -140,7 +140,7 @@ const ResponsibleDropDownMenu = () => {
                     paddingRight: 10,
                   }}
                   onPress={() => {
-                    setResponsible(item.name);
+                    onChangeResponsible(item.name);
                     setClicked(!clicked);
                     onSearch("");
                     setSearch("");

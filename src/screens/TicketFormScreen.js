@@ -23,13 +23,6 @@ import { async } from "@firebase/util";
 import { doc, QuerySnapshot } from "@firebase/firestore";
 
 const TicketFormScreen = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [department, setDepartment] = useState("");
-  const [responsible, setResponsible] = useState("");
-  const [remarks, setRemarks] = useState("");
-  const [IsClicked, setIsClicked] = useState(false);
-
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
 
@@ -57,6 +50,8 @@ const TicketFormScreen = () => {
         description: addDescription,
         remarks: addRemarks,
         priority: items.find((el) => el?.value === addPriority)?.label,
+        department: addDepartment,
+        responsible: addResponsible,
         createdAt: timestamp,
       };
 
@@ -72,6 +67,8 @@ const TicketFormScreen = () => {
           setAddDescription("");
           setAddPriority("");
           setAddRemarks("");
+          setAddDepartment("");
+          setAddResponsible("");
           Keyboard.dismiss();
         })
         .catch((error) => {
@@ -133,11 +130,17 @@ const TicketFormScreen = () => {
             ></TextInput>
 
             <Text style={styles.formtitletexts}>Department:</Text>
-            <DepartmentDropDownMenu />
+            <DepartmentDropDownMenu
+              department={addDepartment}
+              onChangeDepartment={setAddDepartment}
+            />
 
             <Text style={styles.formtitletexts}>Responsible:</Text>
 
-            <ResponsibleDropDownMenu />
+            <ResponsibleDropDownMenu
+              responsible={addResponsible}
+              onChangeResponsible={setAddResponsible}
+            />
             <Text style={styles.formtitletexts}>Priority:</Text>
             <DropDownPicker
               placeholder="Select priority"

@@ -21,6 +21,7 @@ import DocumentOnlyScreen from "../screens/Profile/documentonlyscreen";
 import ProfileDocumentScreen from "../screens/Profile/profileDocumentScreen";
 import DocumentCenterScreen from "../screens/DocumentScreen";
 import TicketFormScreen from "../screens/TicketFormScreen";
+import ViewTickets from "../screens/ViewTickets";
 
 const Stack = createNativeStackNavigator();
 
@@ -53,8 +54,6 @@ const AppStack = () => {
       <Stack.Screen name="Alerts" component={AlertScreen} />
       <Stack.Screen name="Dialog" component={Dialog} />
 
-
-
       <Stack.Screen
         name="Employee"
         component={EmployeeScreen}
@@ -80,18 +79,9 @@ const AppStack = () => {
         component={EmployeeBirthdaysScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="Documents"
-        component={ProfileDocumentScreen}
-      />
-      <Stack.Screen
-        name="myDocuments"
-        component={DocumentCenterScreen}
-      />
-      <Stack.Screen
-        name="DocumentsOnly"
-        component={DocumentOnlyScreen}
-      />
+      <Stack.Screen name="Documents" component={ProfileDocumentScreen} />
+      <Stack.Screen name="myDocuments" component={DocumentCenterScreen} />
+      <Stack.Screen name="DocumentsOnly" component={DocumentOnlyScreen} />
       <Stack.Screen
         name="Help"
         component={HelpScreen}
@@ -102,7 +92,11 @@ const AppStack = () => {
         component={TicketFormScreen}
         options={{ headerShown: false }}
       />
-
+      <Stack.Screen
+        name="viewtickets"
+        component={ViewTickets}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

@@ -65,7 +65,7 @@ const HelpScreen = ({ navigation }) => {
         </Card>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate("viewticket")}
+        onPress={() => navigation.navigate("viewtickets")}
         style={styles.btn2}
       >
         <FontAwesome
