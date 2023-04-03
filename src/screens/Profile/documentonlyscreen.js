@@ -7,7 +7,7 @@ import {
   Dimensions,
   Button,
 } from "react-native";
-import DocumentScreen from "./documentScreen";
+import DocumentScreen from "./profileDocumentScreen";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;

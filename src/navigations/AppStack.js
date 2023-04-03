@@ -11,7 +11,7 @@ import EmergencyContactScreen from "../screens/Profile/emergencyContactScreen";
 import LeavesScreen from "../screens/Profile/leavesScreen";
 import AttendanceScreen from "../screens/Profile/attendanceScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
-import DocumentScreen from "../screens/Profile/documentScreen";
+import DocumentScreen from "../screens/Profile/profileDocumentScreen";
 import AlertScreen from "../screens/Profile/alert";
 import Dialog from "../screens/Profile/dialog";
 import BranchScreen from "../screens/Branch";
@@ -19,6 +19,8 @@ import BirthdayScreen from "../screens/BirthdayScreen";
 import EmployeeBirthdaysScreen from "../screens/EmployeeBirthdayScreen";
 import HelpScreen from "../screens/HelpScreen";
 import DocumentOnlyScreen from "../screens/Profile/documentonlyscreen";
+import ProfileDocumentScreen from "../screens/Profile/profileDocumentScreen";
+import DocumentCenterScreen from "../screens/DocumentScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -79,11 +81,15 @@ const AppStack = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="myDocuments"
-        component={DocumentScreen}
+        name="Documents"
+        component={ProfileDocumentScreen}
       />
       <Stack.Screen
-        name="Documents"
+        name="myDocuments"
+        component={DocumentCenterScreen}
+      />
+      <Stack.Screen
+        name="DocumentsOnly"
         component={DocumentOnlyScreen}
       />
       <Stack.Screen

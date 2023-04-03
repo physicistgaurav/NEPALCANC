@@ -9,13 +9,12 @@ import {
 import { Icon, Text } from "react-native-elements";
 import AppOnly from "./widgets/dropdown";
 import DocumentOnlyScreen from "./documentonlyscreen";
-import { color } from "@rneui/base";
 import { TextInput } from "react-native-paper";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
-const DocumentScreen = () => {
+const ProfileDocumentScreen = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <View style={styles.container2}>
@@ -89,7 +88,7 @@ const DocumentScreen = () => {
     </View>
   );
 };
-export default DocumentScreen;
+export default ProfileDocumentScreen;
 
 const styles = StyleSheet.create({
   container2: {

@@ -10,7 +10,7 @@ import AppStack from "./src/navigations/AppStack";
 import GuestStack from "./src/navigations/GuestStack";
 
 import AuthContext, { AuthProvider, useAuth } from "./src/contexts/AuthContext";
-import DocumentScreen from "./src/screens/Profile/documentScreen";
+import DocumentScreen from "./src/screens/Profile/profileDocumentScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DropdownScreen from "./src/screens/Profile/dropdown";
 import AppOnly from "./src/screens/Profile/help";
