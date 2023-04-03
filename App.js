@@ -16,6 +16,7 @@ import DropdownScreen from "./src/screens/Profile/dropdown";
 import AppOnly from "./src/screens/Profile/help";
 import ProfileScreen from "./src/screens/Profile/profileScreen";
 import DocumentOnlyScreen from "./src/screens/Profile/documentonlyscreen";
+import TicketFormScreen from "./src/screens/TicketFormScreen";
 
 const AppContent = () => {
   const { loggedInUser } = useAuth();
@@ -29,7 +30,7 @@ const AppContent = () => {
 export default function App() {
   return (
     // <SafeAreaView>
-    //   <DocumentOnlyScreen/>
+    //   <TicketFormScreen />
     // </SafeAreaView>
 
     <AuthProvider>
