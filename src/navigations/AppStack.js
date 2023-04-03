@@ -11,7 +11,6 @@ import EmergencyContactScreen from "../screens/Profile/emergencyContactScreen";
 import LeavesScreen from "../screens/Profile/leavesScreen";
 import AttendanceScreen from "../screens/Profile/attendanceScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
-import DocumentScreen from "../screens/Profile/documentScreen";
 import AlertScreen from "../screens/Profile/alert";
 import Dialog from "../screens/Profile/dialog";
 import BranchScreen from "../screens/Branch";
@@ -94,6 +93,7 @@ const AppStack = () => {
         component={TicketFormScreen}
         options={{ headerShown: false }}
       />
+      
     </Stack.Navigator>
   );
 };
