@@ -40,19 +40,8 @@ const AppOnly = () => {
   return (
     <View style={{ flex: 0 }}>
       <TouchableOpacity
-        style={{
-          width: "100%",
-          height: 30,
-          borderRadius: 10,
-          borderWidth: 0.5,
-          alignSelf: "center",
-          marginTop: 10,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingLeft: 15,
-          paddingRight: 15,
-        }}
+        style={styles.container
+        }
         onPress={() => {
           setClicked(!clicked);
         }}
@@ -74,15 +63,8 @@ const AppOnly = () => {
       </TouchableOpacity>
       {clicked ? (
         <View
-          style={{
-            elevation: 5,
-            marginTop: 20,
-            height: 200,
-            alignSelf: "center",
-            width: "90%",
-            backgroundColor: "#fff",
-            borderRadius: 10,
-          }}
+          style={styles.insideContainer
+          }
         >
           <TextInput
             placeholder="Search.."
@@ -92,18 +74,8 @@ const AppOnly = () => {
               onSearch(txt);
               setSearch(txt);
             }}
-            style={{
-              width: "90%",
-              height: 50,
-              alignSelf: "center",
-              borderWidth: 0.2,
-              borderColor: "#8e8e8e",
-              borderRadius: 7,
-              marginTop: 20,
-              paddingLeft: 20,
-            }}
+            style={styles.searchContainer}
           />
-
           <FlatList
             numColumns={2}
             style={styles.FlatList}
@@ -111,16 +83,7 @@ const AppOnly = () => {
             renderItem={({ item, index }) => {
               return (
                 <TouchableOpacity
-                  style={{
-                    width: "50%",
-                    alignSelf: "center",
-                    height: 50,
-                    justifyContent: "center",
-                    borderBottomWidth: 0.5,
-                    borderColor: "#8e8e8e",
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                  }}
+                  style={styles.searchingContainer}
                   onPress={() => {
                     setSelectedCountry(item.country);
                     setClicked(!clicked);
@@ -134,50 +97,52 @@ const AppOnly = () => {
             }}
           />
         </View>
+
       ) : null}
+      <View style={{ height: 10 }} />
     </View>
   );
 };
 const styles = StyleSheet.create({
-  container2: {
-    height: SCREEN_HEIGHT,
-    width: SCREEN_WIDTH,
-    backgroundColor: "transparent",
-  },
-  modalView: {
-    height: SCREEN_HEIGHT - 250,
-    backgroundColor: "white",
-    margin: SCREEN_WIDTH - 400,
-    elevation: 20,
-    borderRadius: 25,
-    padding: 30,
-    backgroundColor: "lightblue",
-  },
-  btncontainer: {
-    backgroundColor: "blue",
-    height: 50,
-    marginLeft: 10,
-    marginRight: 10,
-    justifyContent: "center",
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: SCREEN_HEIGHT - 80,
-    borderRadius: 8,
-  },
-  btnText: {
-    color: "white",
+  container: {
+    width: "100%",
+    height: 30,
+    borderRadius: 10,
+    borderWidth: 0.5,
     alignSelf: "center",
-    justifyContent: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  textStyle: {
-    fontSize: 20,
-    color: "black",
-  },
-  oneLine: {
+    marginTop: 10,
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  insideContainer: {
+    elevation: 5,
+    height: 200,
+    alignSelf: "center",
+    width: "100%",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+  },
+  searchContainer: {
+    width: "95%",
+    height: 30,
+    alignSelf: "center",
+    borderWidth: 0.2,
+    borderColor: "#8e8e8e",
+    borderRadius: 7,
+    marginTop: 20,
+    paddingLeft: 20,
+  },
+  searchingContainer: {
+    width: "40%",
+    alignSelf: "center",
+    height: 30,
+    justifyContent: "center",
+    borderBottomWidth: 0.5,
+    borderColor: "#8e8e8e",
+    marginLeft: 15,
   },
 });
 export default AppOnly;

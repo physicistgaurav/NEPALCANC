@@ -35,12 +35,12 @@ const AppContent = () => {
 
 export default function App() {
   return (
-    <SafeAreaView>
-<LeavesScreen/>   
- </SafeAreaView>
+//     <SafeAreaView>
+// <LeavesScreen/>   
+//  </SafeAreaView>
 
-    // <AuthProvider>
-    //   <AppContent />
-    // </AuthProvider>
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }

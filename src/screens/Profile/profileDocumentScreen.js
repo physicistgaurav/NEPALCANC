@@ -6,24 +6,46 @@ import {
   Dimensions,
   StyleSheet,
   ScrollView,
+  Alert
 } from "react-native";
-import { Icon, Text } from "react-native-elements";
+import { Button, Icon, Text } from "react-native-elements";
 import AppOnly from "./widgets/dropdown";
 import DocumentOnlyScreen from "./documentonlyscreen";
 import { TextInput } from "react-native-paper";
+import AlertScreen from "./alert";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
+
+const showAlert = () =>
+  Alert.alert(
+    'Alert Title',
+    'My Alert Msg',
+    [
+      {
+        text: 'Cancel',
+        onPress: () => Alert.alert('Cancel Pressed'),
+        style: 'cancel',
+      },
+    ],
+    {
+      cancelable: true,
+      onDismiss: () =>
+        Alert.alert(
+          'This alert was dismissed by tapping outside of the alert dialog.',
+        ),
+    },
+  );
 
 const ProfileDocumentScreen = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <View style={styles.container2}>
       <DocumentOnlyScreen />
-      <View style={styles.container2}>
+      <View>
         <Modal visible={showModal} transparent={true}>
           <View style={styles.modalView}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <Text style={{ fontSize: 40, color: 'red' }}>Upload Employee Documents</Text>
               <Text style={{ fontSize: 20 }}>Employee :</Text>
               <AppOnly />
@@ -31,21 +53,18 @@ const ProfileDocumentScreen = () => {
               <AppOnly />
               <Text style={{ fontSize: 20 }}>Label :</Text>
               <TextInput style={styles.textInput}
-                underlineColor="transparent" activeUnderlineColor="false"/>
+                underlineColor="transparent" activeUnderlineColor="false" />
               <Text style={{ fontSize: 20 }}>Expiry date :</Text>
               <TextInput style={styles.textInput}
-                underlineColor="transparent" activeUnderlineColor="false"/>
-                <Text style={{ fontSize: 20 }}>Document :</Text>
+                underlineColor="transparent" activeUnderlineColor="false" />
+              <Text style={{ fontSize: 20 }}>Document :</Text>
               <TextInput style={styles.textInput}
-                underlineColor="transparent" activeUnderlineColor="false"/>
-                <TouchableOpacity onPress={() => setShowModal(false)}>
-                <View style={styles.oneLine}>
-                  <Text>Hello</Text>
-                  <Icon name="add" />
-                  <Text style={styles.textStyle}>Add Documents</Text>
-                </View>
-              </TouchableOpacity>
+                underlineColor="transparent" activeUnderlineColor="false" />
             </ScrollView>
+            <View style={[styles.oneLine, { justifyContent: "space-between", padding: 10 }]}>
+              <Button title='Cancel' color='red' onPress={() => setShowModal(false)} />
+              <Button title='Submit' color='red' onPress={() => { [setShowModal(false), showAlert(true)] }} />
+            </View>
           </View>
         </Modal>
       </View>
@@ -70,7 +89,9 @@ const styles = StyleSheet.create({
     width: '90%',
     elevation: 20,
     borderRadius: 25,
-    padding: 30,
+    paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
     margin: '5%',
     backgroundColor: "#e6ffff",
   },
@@ -104,6 +125,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     marginTop: 10,
     backgroundColor: 'white',
+    marginBottom: 10
   },
   btnText: {
     color: "white",
