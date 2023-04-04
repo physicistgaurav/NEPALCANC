@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList, Text, TouchableOpacity, ScrollView, Overlay, Button } from "react-native";
+import { View, StyleSheet, FlatList, Text, TouchableOpacity, ScrollView, Overlay, Button, TextInput } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -11,14 +11,14 @@ const LeaveCard = (props)=> {
       <View style={styles.reason}>
       <Text style={styles.title}>{props.reason}</Text>
       <Text>10 Days</Text>
-      {props.status == "approved" ? <Icon name="circle" size={30} color= "green"/> 
-      : <Icon name="circle" size={30} color="red"/>  
+      {props.status == "approved" ? <Icon name="square" size={30} color= "green"/> 
+      : <Icon name="square" size={30} color="red"/>  
       }
       </View>
 
       <View style={styles.contents}>
         <Text style={styles.subTitle}>{props.startDate}</Text>
-        <Text style={styles.subTitle}>|||||</Text>
+        <Icon name="arrow-down" size={20} color="brown"/>  
         <Text style={styles.subTitle}>{props.endDate}</Text>
       </View>
     </View> 
@@ -27,13 +27,14 @@ const LeaveCard = (props)=> {
       <View style={styles.reason}>
       <Text style={styles.title}>{props.reason}</Text>
       <Text>10 Days</Text>
-      {props.status == "approved" ? <Icon name="circle" size={30} color= "green"/> 
-      : <Icon name="circle" size={30} color="red"/>  
+      {props.status == "approved" ? <Icon name="square" size={30} color= "green"/> 
+      : <Icon name="square" size={30} color="red"/>  
       }
       </View>
 
       <View style={styles.contents}>
         <Text style={styles.subTitle}>{props.startDate}</Text>
+        <Icon name="arrow-down" size={20} color="brown"/>  
         <Text style={styles.subTitle}>{props.endDate}</Text>
       </View>
     </View> 
@@ -81,9 +82,16 @@ const OverlayView = (props)=> {
       <Text style={styles.subTitle}>Applied On : {props.appliedDate}</Text>
         <Text style={styles.subTitle}>Approved By : {props.approver}</Text>
         <Text style={styles.rejected}>Status : {props.status}</Text>
-        <Text style={styles.subTitle}>Reject Reason : {props.rejectReason}</Text>
-        <Text style={styles.subTitle}>Description : {props.description}</Text>
         
+        <View>
+        <Text style={styles.subTitle}>Reject Reason : </Text>
+        <Text style={styles.subTitle}>{props.rejectReason}</Text>
+        </View>
+        <View>
+        <Text style={styles.subTitle}>Description : </Text>
+        <Text style={styles.subTitle}>{props.description}</Text>
+          
+        </View>
       </View>
       }
       
@@ -92,17 +100,20 @@ const OverlayView = (props)=> {
 }
 
 const LeavesScreen = () => {
+  const [unFilteredLeave, setUnfilteredLeave] = useState([
+    {key: 1, reason : "Half Day", startDate : "1st Jan", endDate : "22nd Jan", appliedDate : "2023/03/25" , approver : "Ram", status : "rejected", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :( "},
+    {key: 2, reason : "Whole Day", startDate : "2nd Feb", endDate : "12th Feb", appliedDate : "2023/03/25" , approver : "Tom", status : "rejected", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
+    {key: 3, reason : "Sick", startDate : "9th March", endDate : "22nd March", appliedDate : "2023/03/25" , approver : "Ram", status : "approved", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
+    {key: 4, reason : "Half Day", startDate : "1st April", endDate : "22nd April", appliedDate : "2023/03/25" , approver : "Shyam", status : "rejected", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
+    {key: 5, reason : "Whole Day", startDate : "1st April", endDate : "22nd April", appliedDate : "2023/03/25" , approver : "Hari", status : "approved", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
+    {key: 6, reason : "Half Day", startDate : "1st April", endDate : "22nd April", appliedDate : "2023/03/25" , approver : "Gopal", status : "approved", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
+  ])
   const [leaveState, setLeaveState] = useState(
-    [
-      {key: 1, reason : "Half Day", startDate : "1st Jan", endDate : "22nd Jan", appliedDate : "2023/03/25" , approver : "Ram", status : "rejected", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
-      {key: 2, reason : "Whole Day", startDate : "2nd Feb", endDate : "12th Feb", appliedDate : "2023/03/25" , approver : "Tom", status : "rejected", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
-      {key: 3, reason : "Sick", startDate : "9th March", endDate : "22nd March", appliedDate : "2023/03/25" , approver : "Ram", status : "approved", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
-      {key: 4, reason : "Half Day", startDate : "1st April", endDate : "22nd April", appliedDate : "2023/03/25" , approver : "Shyam", status : "rejected", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
-      {key: 5, reason : "Whole Day", startDate : "1st April", endDate : "22nd April", appliedDate : "2023/03/25" , approver : "Hari", status : "approved", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
-      {key: 6, reason : "Half Day", startDate : "1st April", endDate : "22nd April", appliedDate : "2023/03/25" , approver : "Gopal", status : "approved", rejectReason : "manpower shortage", description : "As the office is facing shortage of manpower, we cannot issue leaves for a few more weeks :("},
-    ]
+    unFilteredLeave
   );
 
+  
+  
   const [showOverlay, setShowOverlay] = useState(false);
 
   const [index, setIndex] = useState('No Data');
@@ -127,6 +138,21 @@ const LeavesScreen = () => {
     setDescription(item.description);
     setShowOverlay(true);
   }
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearch = (text)=> {
+    setSearchText(text);
+  if (text) {
+    const newData = unFilteredLeave.filter((item) => {
+      const itemData = item.reason.toLowerCase();
+      const textData = text.toLowerCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    setLeaveState(newData);
+  } else {
+    setLeaveState(unFilteredLeave);
+  }
+  }
   renderGridItem = ({ item }) => {
     return (
         <TouchableOpacity activeOpacity={1} onPress={()=>{
@@ -144,7 +170,12 @@ const LeavesScreen = () => {
   return (
     <ScrollView>
       <Text>Your Leaves</Text>
-      
+      <TextInput
+        style={styles.input}
+        placeholder="Search"
+        value={searchText}
+        onChangeText={handleSearch}
+      />
       {
         showOverlay ? <View>
         <OverlayView index= {index} reason = {reason} startDate = {startDate} endDate = {endDate} showOverlay={showOverlay} 
@@ -160,9 +191,8 @@ const LeavesScreen = () => {
         data={leaveState}
         renderItem={this.renderGridItem}
         numColumns={1}
-    />
+      />
       } 
-    
     </ScrollView>
   )
 };
@@ -210,6 +240,7 @@ const styles = StyleSheet.create({
     },
     subTitle: {
       fontSize: 14,
+      fontWeight: 'bold',
       color: 'blue',
     },
     approved: {
@@ -274,11 +305,18 @@ const styles = StyleSheet.create({
       right : 0,
       backgroundColor: 'red',
       borderRadius: 50,
-      width: 50,
-      height: 50,
+      width: 45,
+      height: 45,
       justifyContent: 'center',
       alignItems: 'center',
-    }
+    },
+    
+    input: {
+      height: 40,
+      backgroundColor: '#fff',
+      borderRadius: 20,
+      padding: 10,
+    },
 });
 
 
