@@ -9,7 +9,6 @@ import PersonalDetailsScreen from "../screens/Profile/personalDetailScreen";
 import BankDetailScreen from "../screens/Profile/bankDetailScreen";
 import EmergencyContactScreen from "../screens/Profile/emergencyContactScreen";
 import LeavesScreen from "../screens/Profile/leavesScreen";
-import AttendanceScreen from "../screens/Profile/attendanceScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
 import AlertScreen from "../screens/Profile/alert";
 import Dialog from "../screens/Profile/dialog";
@@ -22,6 +21,7 @@ import ProfileDocumentScreen from "../screens/Profile/profileDocumentScreen";
 import DocumentCenterScreen from "../screens/DocumentScreen";
 import TicketFormScreen from "../screens/TicketFormScreen";
 import ViewTickets from "../screens/ViewTickets";
+import AttendanceScreen from "../screens/Profile/Attendance/attendanceScreen/attendanceScreen";
 
 const Stack = createNativeStackNavigator();
 

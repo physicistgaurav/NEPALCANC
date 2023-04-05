@@ -23,6 +23,7 @@ import BankDetailScreen from "./src/screens/Profile/bankDetailScreen";
 import EmergencyContactScreen from "./src/screens/Profile/emergencyContactScreen";
 import ProfileDocumentScreen from "./src/screens/Profile/profileDocumentScreen";
 import LeavesScreen from "./src/screens/Profile/leavesScreen";
+import AttendanceScreen from "./src/screens/Profile/Attendance/attendanceScreen/attendanceScreen";
 
 const AppContent = () => {
   const { loggedInUser } = useAuth();
@@ -35,12 +36,12 @@ const AppContent = () => {
 
 export default function App() {
   return (
-//     <SafeAreaView>
-// <LeavesScreen/>   
-//  </SafeAreaView>
+    <SafeAreaView>
+      <AttendanceScreen />
+    </SafeAreaView>
 
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    // <AuthProvider>
+    //   <AppContent />
+    // </AuthProvider>
   );
 }
