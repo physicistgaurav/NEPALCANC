@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, FlatList, Text, View, Dimensions, TouchableOpacity, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  Text,
+  View,
+  Dimensions,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { IconButton } from "@react-native-material/core";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Avatar } from "@rneui/base/dist/Avatar/Avatar";
@@ -99,7 +107,6 @@ const ProfileScreen = ({ navigation }) => {
         />
       </ScrollView>
     </View>
-
   );
 };
 export default ProfileScreen;

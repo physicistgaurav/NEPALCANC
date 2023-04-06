@@ -36,12 +36,12 @@ const AppContent = () => {
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <AttendanceScreen />
-    </SafeAreaView>
+    // <SafeAreaView>
+    //   <AttendanceScreen />
+    // </SafeAreaView>
 
-    // <AuthProvider>
-    //   <AppContent />
-    // </AuthProvider>
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
