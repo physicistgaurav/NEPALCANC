@@ -172,8 +172,10 @@ const styles = StyleSheet.create({
   },
   logincontainer: {
     backgroundColor: "#e9ecef",
-    margin: 50,
     width: 320,
+    marginTop: 40,
+    justifyContent: "center",
+    alignSelf: "center",
     height: 340,
     borderRadius: 4,
     paddingLeft: 10,

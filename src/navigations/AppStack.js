@@ -4,10 +4,6 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/Profile/profileScreen";
 import RegionScreen from "../screens/RegionScreen";
 import FeedbackScreen from "../screens/FeedbackScreen";
-import EmployeeDetailScreen from "../screens/Profile/employeeDetailScreen";
-import PersonalDetailsScreen from "../screens/Profile/personalDetailScreen";
-import BankDetailScreen from "../screens/Profile/bankDetailScreen";
-import EmergencyContactScreen from "../screens/Profile/emergencyContactScreen";
 import LeavesScreen from "../screens/Profile/leavesScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
 import AlertScreen from "../screens/Profile/alert";
@@ -22,6 +18,10 @@ import DocumentCenterScreen from "../screens/DocumentScreen";
 import TicketFormScreen from "../screens/TicketFormScreen";
 import ViewTickets from "../screens/ViewTickets";
 import AttendanceScreen from "../screens/Profile/Attendance/attendanceScreen/attendanceScreen";
+import EmployeeDetailScreen from "../screens/Profile/DetailsScreen/employeeDetailScreen";
+import BankDetailScreen from "../screens/Profile/DetailsScreen/bankDetailScreen";
+import EmergencyContactScreen from "../screens/Profile/DetailsScreen/emergencyContactScreen";
+import PersonalDetailsScreen from "../screens/Profile/DetailsScreen/personalDetailScreen";
 
 const Stack = createNativeStackNavigator();
 

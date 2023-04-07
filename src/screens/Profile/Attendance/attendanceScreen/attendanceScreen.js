@@ -9,6 +9,26 @@ import AttendanceTypeDropdownScreen from "../attendanceWidgets/attendanceTypeDro
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
+const showAlert = () =>
+  Alert.alert(
+    'Alert Title',
+    'My Alert Msg',
+    [
+      {
+        text: 'Cancel',
+        onPress: () => Alert.alert('Cancel Pressed'),
+        style: 'cancel',
+      },
+    ],
+    {
+      cancelable: true,
+      onDismiss: () =>
+        Alert.alert(
+          'This alert was dismissed by tapping outside of the alert dialog.',
+        ),
+    },
+  );
+
 const AttendanceScreen = () => {
   const attendanceScreenDatelist = [
 
@@ -100,7 +120,7 @@ const AttendanceScreen = () => {
             </ScrollView>
             <View style={[styles.oneLine, { justifyContent: "space-between", padding: 10 }]}>
               <Button title='Cancel' color='red' onPress={() => {[setShowEmployeeAttendancModal(false),setShowMonthModal(true)]}} />
-              <Button title='Submit' color='red' onPress={() => { [setShowEmployeeAttendancModal(false)] }} />
+              <Button title='Submit' color='red' onPress={() => { [setShowEmployeeAttendancModal(false)], showAlert(true) }} />
             </View>
           </View>
         </Modal>
