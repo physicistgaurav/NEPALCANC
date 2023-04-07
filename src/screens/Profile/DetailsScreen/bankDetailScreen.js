@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Text, Dimensions, ScrollView } from "react-native";
+import { View, StyleSheet, FlatList, Text, Dimensions } from "react-native";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -21,29 +21,28 @@ const BankDetailScreen = () => {
   ];
   return (
     <View style={styles.screenContainer}>
-    <View style={{ height: 10 }} />
-    <FlatList
-      data={bankDetail}
-      renderItem={({ item }) => {
-        return (
-          <View>
-            <View style={styles.oneLine}>
-              <View style={[styles.flatlistContainer1, styles.oneLine]}>
-                <Text style={[styles.textStyle, { alignSelf: "center" }]}>
-                  {" "}
-                  {item.sn}
-                </Text>
-              </View>
+      <View style={{ height: 10 }} />
+      <FlatList
+        data={bankDetail}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <View style={styles.oneLine}>
+                <View style={[styles.flatlistContainer1, styles.oneLine]}>
+                  <Text style={[styles.textStyle, { alignSelf: "center" }]}>
+                    {item.sn}
+                  </Text>
+                </View>
 
-              <View style={styles.flatlistContainer2}>
-                <Text style={styles.textStyle}>{item.category} </Text>
+                <View style={styles.flatlistContainer2}>
+                  <Text style={styles.textStyle}>{item.category} </Text>
+                </View>
               </View>
             </View>
-          </View>
-        );
-      }}
-    />
-  </View>
+          );
+        }}
+      />
+    </View>
   );
 };
 export default BankDetailScreen;
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   },
   flatlistContainer1: {
     width: "40%",
-    height: 40,
+    height: 45,
     backgroundColor: "cyan",
     marginTop: 4,
     marginLeft: 10,
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   },
   flatlistContainer2: {
     width: "53%",
-    height: 40,
+    height: 45,
     backgroundColor: "#e6ffff",
     justifyContent: "center",
     marginTop: 4,
@@ -82,6 +81,6 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 20,
     color: "black",
-    marginLeft: 5,
+    marginLeft: 10,
   },
 });

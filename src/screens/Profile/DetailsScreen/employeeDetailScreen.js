@@ -74,7 +74,6 @@ const EmployeeDetailScreen = () => {
               <View style={styles.oneLine}>
                 <View style={[styles.flatlistContainer1, styles.oneLine]}>
                   <Text style={[styles.textStyle, { alignSelf: "center" }]}>
-                    {" "}
                     {item.sn}
                   </Text>
                 </View>
@@ -126,6 +125,6 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 20,
     color: "black",
-    marginLeft: 5,
+    marginLeft: 10,
   },
 });

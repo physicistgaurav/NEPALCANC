@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Dimensions,
-  Text,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, FlatList, Dimensions, Text } from "react-native";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -33,7 +26,6 @@ const PersonalDetailsScreen = () => {
               <View style={styles.oneLine}>
                 <View style={[styles.flatlistContainer1, styles.oneLine]}>
                   <Text style={[styles.textStyle, { alignSelf: "center" }]}>
-                    {" "}
                     {item.sn}
                   </Text>
                 </View>
