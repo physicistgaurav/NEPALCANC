@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   flatlistContainer1: {
     width: "40%",
     height: 50,
-    backgroundColor: "cyan",
+    backgroundColor: "#F0FFFF",
     marginTop: 4,
     marginLeft: 10,
     marginRight: 5,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   flatlistContainer2: {
     width: "53%",
     height: 50,
-    backgroundColor: "#e6ffff",
+    backgroundColor: "#00FFFF",
     justifyContent: "center",
     marginTop: 4,
     borderBottomRightRadius: 15,

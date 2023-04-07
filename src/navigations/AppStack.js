@@ -6,14 +6,11 @@ import RegionScreen from "../screens/RegionScreen";
 import FeedbackScreen from "../screens/FeedbackScreen";
 import LeavesScreen from "../screens/Profile/leavesScreen";
 import PerformanceScreen from "../screens/Profile/performanceScreen";
-import AlertScreen from "../screens/Profile/alert";
 import Dialog from "../screens/Profile/dialog";
 import BranchScreen from "../screens/Branch";
 import BirthdayScreen from "../screens/BirthdayScreen";
 import EmployeeBirthdaysScreen from "../screens/EmployeeBirthdayScreen";
 import HelpScreen from "../screens/HelpScreen";
-import DocumentOnlyScreen from "../screens/Profile/documentonlyscreen";
-import ProfileDocumentScreen from "../screens/Profile/profileDocumentScreen";
 import DocumentCenterScreen from "../screens/DocumentScreen";
 import TicketFormScreen from "../screens/TicketFormScreen";
 import ViewTickets from "../screens/ViewTickets";
@@ -22,6 +19,8 @@ import EmployeeDetailScreen from "../screens/Profile/DetailsScreen/employeeDetai
 import BankDetailScreen from "../screens/Profile/DetailsScreen/bankDetailScreen";
 import EmergencyContactScreen from "../screens/Profile/DetailsScreen/emergencyContactScreen";
 import PersonalDetailsScreen from "../screens/Profile/DetailsScreen/personalDetailScreen";
+import DocumentOnlyScreen from "../screens/Profile/Document/screens/documentonlyscreen";
+import ProfileDocumentScreen from "../screens/Profile/Document/screens/profileDocumentScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,7 +50,6 @@ const AppStack = () => {
       <Stack.Screen name="Leaves" component={LeavesScreen} />
       <Stack.Screen name="Attendance" component={AttendanceScreen} />
       <Stack.Screen name="Performance" component={PerformanceScreen} />
-      <Stack.Screen name="Alerts" component={AlertScreen} />
       <Stack.Screen name="Dialog" component={Dialog} />
 
       <Stack.Screen
