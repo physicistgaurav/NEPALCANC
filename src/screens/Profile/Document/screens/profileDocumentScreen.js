@@ -5,14 +5,15 @@ import {
   Modal,
   Dimensions,
   StyleSheet,
-  ScrollView,
   Alert,
+  ScrollView,
 } from "react-native";
 import { Button, Text } from "react-native-elements";
-import AppOnly from "../../widgets/dropdown";
 import DocumentOnlyScreen from "./documentonlyscreen";
-import { Divider, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import { ScreenHeight } from "@rneui/base";
+import AttendanceEmployeeDropdown from "../widgets/dropdownAttendanceEmployee";
+import AttendanceCategoryDropdown from "../widgets/dropdownAttendanceCategory";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -40,21 +41,21 @@ const showAlert = () =>
 const ProfileDocumentScreen = () => {
   const [showModal, setShowModal] = useState(false);
   return (
-    <View style={styles.container2}>
+    <View style={styles.container}>
       <View style={styles.container1}>
         <DocumentOnlyScreen />
       </View>
       <View>
         <Modal visible={showModal} transparent={true}>
           <View style={styles.modalView}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <Text style={{ fontSize: 40, color: "red" }}>
-                Upload Employee Documents
-              </Text>
+            <Text style={{ fontSize: 40, color: "red" }}>
+              Upload Employee Documents
+            </Text>
+            <ScrollView nestedScrollEnabled={true}>
               <Text style={{ fontSize: 20 }}>Employee :</Text>
-              <AppOnly />
+              <AttendanceEmployeeDropdown />
               <Text style={{ fontSize: 20 }}>Category :</Text>
-              <AppOnly />
+              <AttendanceCategoryDropdown />
               <Text style={{ fontSize: 20 }}>Label :</Text>
               <TextInput
                 style={styles.textInput}
@@ -74,6 +75,7 @@ const ProfileDocumentScreen = () => {
                 activeUnderlineColor="false"
               />
             </ScrollView>
+
             <View
               style={[
                 styles.oneLine,
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   container1: {
-    height: ScreenHeight-100,
+    height: ScreenHeight - 100,
   },
   modalView: {
     height: "85%",

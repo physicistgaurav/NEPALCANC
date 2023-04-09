@@ -76,62 +76,64 @@ const ProfileScreen = ({ navigation }) => {
   ];
   return (
     <View>
-    <View style={styles.screenContainer}>
-      <View style={styles.avatarContainer}>
-        <Avatar
-          style={styles.avatar}
-          source={require("../../../assets/profileDefaultUser.png")}
-        />
-        <Text style={{ fontSize: 30, alignSelf: "center" }}>Nirajan shahi</Text>
-        <Text style={{ fontSize: 20, alignSelf: "center", fontWeight: "200" }}>
-          nirajan.shahi@nepalcanmove.com
-        </Text>
-        <View
-          style={[
-            styles.oneline,
-            { alignSelf: "center", marginTop: 5, marginBottom: 10 },
-          ]}
-        >
-          <Text style={{ fontSize: 20, color: "green" }}>
-            React native Intern{"     "}
+      <View style={styles.screenContainer}>
+        <View style={styles.avatarContainer}>
+          <Avatar
+            style={styles.avatar}
+            source={require("../../../assets/profileDefaultUser.png")}
+          />
+          <Text style={{ fontSize: 30, alignSelf: "center" }}>Nirajan shahi</Text>
+          <Text style={{ fontSize: 20, alignSelf: "center", fontWeight: "200" }}>
+            nirajan.shahi@nepalcanmove.com
           </Text>
-          <Divider orientation="vertical" width={2} />
-          <Text style={{ fontSize: 20, color: "green" }}>
-            {"     "} +977 9800000000
-          </Text>
+          <View
+            style={[
+              styles.oneline,
+              { alignSelf: "center", marginTop: 5, marginBottom: 10 },
+            ]}
+          >
+            <Text style={{ fontSize: 20, color: "green" }}>
+              React native Intern{"     "}
+            </Text>
+            <Divider orientation="vertical" width={2} />
+            <Text style={{ fontSize: 20, color: "green" }}>
+              {"     "} +977 9800000000
+            </Text>
+          </View>
         </View>
-      </View>
-      <View style={{ height: 5 }} />
-      <FlatList
-        data={profileLists}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={(_key) => navigation.navigate(item.route)}
-            >
-              <View style={[styles.flatlistContainer, styles.oneline]}>
-                <View style={[styles.insideFlatlistContainer]}>
-                  <IconButton
-                    icon={<MaterialCommunityIcons name={item.icon} size={30} />}
-                    disabled
+        <View style={{ height: 5 }} />
+        <FlatList
+          data={profileLists}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={(_key) => navigation.navigate(item.route)}
+              >
+                <View style={[styles.flatlistContainer, styles.oneline]}>
+                  <View style={[styles.insideFlatlistContainer]}>
+                    <IconButton
+                      icon={<MaterialCommunityIcons name={item.icon} size={30} />}
+                      disabled
+                    />
+                  </View>
+
+                  <View style={[styles.insideFlatlistContainer]}>
+                    <Text style={styles.textStyle}> {item.name}</Text>
+                    <Text style={styles.textStyle1}> {item.nameDetail}</Text>
+                  </View>
+                  <View style={{ flex: SCREEN_WIDTH }} />
+                  <Image
+                    style={{ alignSelf: "center", height: 25, width: 25 }}
+                    source={require("../../../assets/rightArrow.png")}
                   />
                 </View>
+              </TouchableOpacity>
+            );
+          }}
+        />
+        <View style={{ height: 10 }} />
 
-                <View style={[styles.insideFlatlistContainer]}>
-                  <Text style={styles.textStyle}> {item.name}</Text>
-                  <Text style={styles.textStyle1}> {item.nameDetail}</Text>
-                </View>
-                <View style={{ flex: SCREEN_WIDTH }} />
-                <Image
-                  style={{ alignSelf: "center", height: 25, width: 25 }}
-                  source={require("../../../assets/rightArrow.png")}
-                />
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-      />
-    </View>
+      </View>
     </View>
 
   );
@@ -140,7 +142,7 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   screenContainer: {
-    height: SCREEN_HEIGHT,
+    height: '100%',
     width: SCREEN_WIDTH,
     backgroundColor: "#f0f8ff",
   },

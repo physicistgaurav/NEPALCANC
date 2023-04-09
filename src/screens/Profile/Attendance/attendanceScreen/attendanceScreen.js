@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Text, Button } from "react-native-elements";
 import { StyleSheet, FlatList, Dimensions, View, TouchableOpacity, Modal, ScrollView, Keyboard } from "react-native";
 import AttendanceOnlyScreen from "./attendanceOnlyScreen";
-import AppOnly from "../../widgets/dropdown";
 import AttendanceMonthDropdownScreen from "../attendanceWidgets/attendanceMonthDropdown";
 import AttendanceTypeDropdownScreen from "../attendanceWidgets/attendanceTypeDropdown";
 

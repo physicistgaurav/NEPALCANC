@@ -75,49 +75,46 @@ const AttendanceMonthDropdownScreen = () => {
         </SafeAreaView>
     );
 };
-export default AttendanceMonthDropdownScreen;
 const styles = StyleSheet.create({
-    btncontainer: {
-        backgroundColor: "white",
-        borderWidth: 0.5,
-        height: 25,
-        paddingLeft: 10,
-        paddingRight: 10,
-        borderRadius: 10,
-        justifyContent: "space-between",
-        marginTop: 10,
-        alignItems: "center"
-    },
-    btnText: {
-        color: "black",
-        fontSize: 15,
-    },
-    oneLine: {
-        flexDirection: "row",
-    },
-    dropdownArea: {
-        width: '100%',
-        height: 200,
-        borderRadius: 10,
-        backgroundColor: '#fff',
-        alignSelf: "center"
-    },
-    searchInput: {
-        width: '90%',
-        height: 25,
-        borderRadius: 10,
-        borderWidth: 0.5,
-        alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 5,
-        paddingLeft: 10
-    },
-    monthItem: {
-        width: '85%',
-        height: 20,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#8e8e8e',
-        alignSelf: "center",
-        justifyContent: 'center'
-    }
-})
+  container: {
+    height: 35,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: '#ffffff'
+
+  },
+  insideContainer: {
+    elevation: 5,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    paddingBottom: 5,
+    backgroundColor: '#e6ffff'
+  },
+  searchContainer: {
+    width: "90%",
+    height: 30,
+    alignSelf: "center",
+    borderWidth: 0.2,
+    borderColor: "#8e8e8e",
+    borderRadius: 7,
+    marginTop: 10,
+    paddingLeft: 10,
+    backgroundColor: '#ffffff'
+  },
+  searchingContainer: {
+    width: "30%",
+    height: 25,
+    backgroundColor: 'transparent',
+    justifyContent: "center",
+    borderBottomWidth: 0.5,
+    borderColor: "#8e8e8e",
+    marginLeft: 20,
+  },
+});
+export default AttendanceMonthDropdownScreen;
