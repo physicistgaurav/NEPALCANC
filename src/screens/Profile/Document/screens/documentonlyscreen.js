@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
+import React, {useState} from "react";
+import { Platform, TouchableOpacity } from "react-native";
 import {
   StyleSheet,
   FlatList,
@@ -9,6 +9,7 @@ import {
   Image,
   Alert,
 } from "react-native";
+import DocumentPicker from "react-native-document-picker";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -36,7 +37,8 @@ const downloadAlert = () =>
     }
   );
 
-const DocumentOnlyScreen = () => {
+const DocumentOnlyScreen = (props) => {
+  const [document, setDocument] = useState(null);
   const documentDetails = [
     {
       sn: "1",
@@ -144,6 +146,16 @@ const DocumentOnlyScreen = () => {
       action: "",
     },
   ];
+  const pickDocument = async () => {
+    try {
+      const result = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+      });
+      setDocument(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <View>
       <FlatList
@@ -180,10 +192,22 @@ const DocumentOnlyScreen = () => {
                 </Text>
                 <Text style={{ fontWeight: "200" }}>{item.label}</Text>
               </View>
+              <TouchableOpacity
+                onPress={pickDocument}
+                style={{ backgroundColor: 'blue', paddingHorizontal: 20, paddingVertical: 20 }}><Text style={{ color: 'white' }}>Click</Text></TouchableOpacity>
+              {document && (
+                <View style={{ marginTop: 20 }}>
+                  <Text>{`URI: ${document.uri}`}</Text>
+                  <Text>{`Type: ${document.type}`}</Text>
+                  <Text>{`Name: ${document.name}`}</Text>
+                  <Text>{`Size: ${document.size}`}</Text>
+                </View>
+              )}
             </View>
           );
         }}
       />
+
     </View>
   );
 };

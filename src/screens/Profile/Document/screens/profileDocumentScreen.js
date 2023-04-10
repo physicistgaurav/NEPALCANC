@@ -10,22 +10,25 @@ import {
 } from "react-native";
 import { Button, Text } from "react-native-elements";
 import DocumentOnlyScreen from "./documentonlyscreen";
-import { TextInput } from "react-native-paper";
 import { ScreenHeight } from "@rneui/base";
 import AttendanceEmployeeDropdown from "../widgets/dropdownAttendanceEmployee";
 import AttendanceCategoryDropdown from "../widgets/dropdownAttendanceCategory";
+import { TextInput } from "react-native-paper";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const showAlert = () =>
   Alert.alert(
-    "Alert Title",
-    "My Alert Msg",
+    "Submit Document",
+    "Do you really want to submit?",
     [
       {
+        text: "Ok",
+        onPress:() => Alert.alert("Submitted"),
+      },
+      {
         text: "Cancel",
-        onPress: () => Alert.alert("Cancel Pressed"),
         style: "cancel",
       },
     ],
